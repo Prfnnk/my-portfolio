@@ -13,32 +13,39 @@ import { A11y } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-const Hobbies = ({sectionRef, offsetTop}) => {
+const Hobbies = ({ sectionRef, offsetTop }) => {
   const mousePosition = useMousePosition(sectionRef);
   const isMobile = useGetDevice();
   const renderSBubbles = () => {
     if (isMobile) {
-    return <Swiper
-    modules={[A11y]}
-    spaceBetween={0}
-    slidesPerView={1}
-    speed={800}
-    autoplay={{ delay: 2000 }}
-  >
-    {hobbies.map((hobby, index) => (
-      <SwiperSlide key={index} className='hobbies__slide'>
-        <div className={`hobbies__item hobbies__item--${hobby.title.toLowerCase()}`}>
-          <div className="hobbies__inner">
-            <p>{hobby.title}</p>
-            <p>{hobby.description}</p>
-          </div>
-        </div>
-      </SwiperSlide>
-    ))}
-  </Swiper>
+      return (
+        <Swiper
+          modules={[A11y]}
+          spaceBetween={0}
+          slidesPerView={1}
+          speed={800}
+          autoplay={{ delay: 2000 }}
+        >
+          {hobbies.map((hobby, index) => (
+            <SwiperSlide key={index} className="hobbies__slide">
+              <div
+                className={`hobbies__item hobbies__item--${hobby.title.toLowerCase()}`}
+              >
+                <div className="hobbies__inner">
+                  <p>{hobby.title}</p>
+                  <p>{hobby.description}</p>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      );
     } else {
       return hobbies.map((hobby, index) => (
-        <div key={index} className={`hobbies__item hobbies__item--${hobby.title.toLowerCase()}`}>
+        <div
+          key={index}
+          className={`hobbies__item hobbies__item--${hobby.title.toLowerCase()}`}
+        >
           <div className="hobbies__inner">
             <p>{hobby.title}</p>
             <p>{hobby.description}</p>
@@ -46,17 +53,18 @@ const Hobbies = ({sectionRef, offsetTop}) => {
         </div>
       ));
     }
-  }
+  };
 
   return (
-    <div className='hobbies'>
-      <h1 className='section__subtitle'>Hobbies</h1>
-      <div className="hobbies__wrap">
-        {renderSBubbles()}
-      </div>
+    <div className="hobbies">
+      <h1 className="section__subtitle">Hobbies</h1>
+      <div className="hobbies__wrap">{renderSBubbles()}</div>
       <div className="hobbies__svg">
-          <Character mousePosition={JSON.stringify(mousePosition)} offsetTop={offsetTop} />
-        </div>
+        <Character
+          mousePosition={JSON.stringify(mousePosition)}
+          offsetTop={offsetTop}
+        />
+      </div>
     </div>
   );
 };
