@@ -21,6 +21,7 @@
   &__item {
     position: relative;
     pointer-events: all;
+    cursor: pointer;
 
     &:before {
       content: '';

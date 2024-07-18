@@ -7,6 +7,8 @@
   border-bottom-right-radius: 3rem;
   scroll-snap-align: start;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 
   &__wrap {
     height: 100%;
@@ -14,6 +16,10 @@
     width: 100%;
     padding: 1rem;
     padding-left: 2.5rem;
+    flex-direction: column;
+    flex: 1;
+    max-width: 1440px;
+    margin-inline: auto;
   }
 
   @media (min-width: 600px) {
@@ -35,6 +41,7 @@
     color: var(--color-toffee);
     display: flex;
     flex-direction: column;
+    position: relative;
 
     &-main {
       font-weight: 700;
@@ -42,12 +49,14 @@
       gap: 1.25rem;
       line-height: 0.7;
       font-family: var(--font-heading);
+      z-index: 1;
     }
 
     &-span {
       font-size: 0.3em;
       font-weight: 300;
       font-family: var(--font-secondary);
+      z-index: 1;
 
       &--bottom {
         text-align: right;
@@ -83,11 +92,16 @@
     }
   }
 
-  &--greet & {
-    &__wrap {
-      display: flex;
+  &--greet {
+    .section__wrap {
       justify-content: center;
       align-items: center;
+    }
+    .sparkle {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
     }
   }
 
@@ -248,12 +262,12 @@
       flex: 1 1 18%;
     }
 
-    &-icon {
+    .icon-plain {
       font-size: 2.5rem;
       color: var(--color-burnished-brown);
     }
 
-    &-image {
+    .icon-image {
       width: 3rem;
       margin: auto;
 
@@ -300,7 +314,7 @@
   }
   .section__subtitle {
     @media (min-width: 768px) {
-      margin-bottom: 10rem;
+      margin-bottom: 10vh;
     }
   }
   &__item {
@@ -321,6 +335,15 @@
 
       &:hover {
         flex-basis: 50%;
+
+        .projects__title {
+          &-text {
+            opacity: 0;
+          }
+          &-stack {
+            opacity: 1;
+          }
+        }
       }
     }
 
@@ -347,12 +370,39 @@
       height: 100%;
     }
   }
+
+  &__title {
+    height: 1.35em;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 100%;
+
+    &-text {
+      transition: opacity 0.55s ease;
+    }
+    &-stack {
+      position: absolute;
+      width: 70%;
+      top: 0;
+      left: 15%;
+      opacity: 0;
+      transition: opacity 0.55s ease;
+      text-align: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+  }
 }
 
 .hobbies {
   display: flex;
   flex-direction: column;
   height: 100%;
+  flex: 1;
+
   &__wrap {
     display: flex;
     gap: 1rem;
@@ -424,6 +474,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  flex: 1;
 
   .section__subtitle {
     margin-bottom: 0;

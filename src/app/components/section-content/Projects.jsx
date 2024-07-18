@@ -1,5 +1,6 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import DevIcon from '@/app/components/devIcon/DevIcon';
 import Image from 'next/image';
 import { useGetDevice } from '@/app/hooks/useGetDevice';
 
@@ -49,7 +50,16 @@ const Projects = () => {
               key={project.title}
             >
               <div className="projects__item-content">
-                <h3>{project.title}</h3>
+                <h3 className="projects__title">
+                  <span className="projects__title-text">{project.title}</span>
+                  <span className="projects__title-stack">
+                    {project.stack.map((stack) => (
+                      <span key={stack.name}>
+                        <DevIcon icon={stack.icon} iconName={stack.name} />
+                      </span>
+                    ))}
+                  </span>
+                </h3>
               </div>
               <Image
                 className="projects__item-img"
