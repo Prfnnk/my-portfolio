@@ -1,9 +1,14 @@
-import naturellaSrc from '@/app/assets/naturella.png';
-import cultureSrc from '@/app/assets/culture.png';
-import whatToDoSrc from '@/app/assets/whattodo.png';
-import stoovSrc from '@/app/assets/stoov.png';
-import InsectHeroesSrc from '@/app/assets/insect_heroes.png';
-import popsaSrc from '@/app/assets/popsa.png';
+import naturellaSrc from '@/app/assets/images/projects/naturella.png';
+import cultureSrc from '@/app/assets/images/projects/culture.png';
+import whatToDoSrc from '@/app/assets/images/projects/whattodo.png';
+import stoovSrc from '@/app/assets/images/projects/stoov.png';
+import InsectHeroesSrc from '@/app/assets/images/projects/insect_heroes.png';
+import popsaSrc from '@/app/assets/images/projects/popsa.png';
+
+import gsapSrc from '@/app/assets/images/icons/gsap.jpeg';
+import pugSrc from '@/app/assets/images/icons/pug.svg';
+import shopifySrc from '@/app/assets/images/icons/shopify_glyph_black.svg';
+import liquidSrc from '@/app/assets/images/icons/liquid.png';
 
 // icon values are from devicon library: https://devicon.dev/
 export const projects = [
@@ -18,7 +23,7 @@ export const projects = [
         },
         {
           name: 'Gsap',
-          icon: '',
+          icon: gsapSrc,
         },
         {
           name: 'Sass',
@@ -26,7 +31,7 @@ export const projects = [
         },
         {
           name: 'Pug',
-          icon: '',
+          icon: pugSrc,
         },
       ],
       link: 'https://naturella.lenta.ru/',
@@ -37,11 +42,7 @@ export const projects = [
       stack: [
         {
           name: 'Liquid',
-          icon: '',
-        },
-        {
-          name: 'REST',
-          icon: '',
+          icon: liquidSrc,
         },
         {
           name: 'Tailwind',
@@ -49,7 +50,7 @@ export const projects = [
         },
         {
           name: 'Shopify',
-          icon: '',
+          icon: shopifySrc,
         },
       ],
       link: 'https://nl.stoov.com/',
@@ -64,7 +65,7 @@ export const projects = [
         },
         {
           name: 'Gsap',
-          icon: '',
+          icon: gsapSrc,
         },
         {
           name: 'Nuxt',
@@ -89,7 +90,7 @@ export const projects = [
         },
         {
           name: 'Gsap',
-          icon: '',
+          icon: gsapSrc,
         },
         {
           name: 'Nuxt',
@@ -108,7 +109,7 @@ export const projects = [
       stack: [
         {
           name: 'Liquid',
-          icon: '',
+          icon: liquidSrc,
         },
         {
           name: 'Sass',
@@ -116,7 +117,7 @@ export const projects = [
         },
         {
           name: 'Shopify',
-          icon: '',
+          icon: shopifySrc,
         },
       ],
       link: 'https://cancelculture.afisha.ru/',
@@ -131,7 +132,7 @@ export const projects = [
         },
         {
           name: 'Gsap',
-          icon: '',
+          icon: gsapSrc,
         },
         {
           name: 'Nuxt',

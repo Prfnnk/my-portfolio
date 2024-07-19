@@ -1,8 +1,8 @@
-import styledComponents from '@/app/assets/styled-components.svg';
-import crossBrowser from '@/app/assets/cross-browser.svg';
-import responsive from '@/app/assets/responsive.svg';
-import a11 from '@/app/assets/a11.svg';
-import shopify from '@/app/assets/shopify_glyph_black.svg';
+import styledComponents from '@/app/assets/images/icons/styled-components.svg';
+import crossBrowser from '@/app/assets/images/icons/cross-browser.svg';
+import responsive from '@/app/assets/images/icons/responsive.svg';
+import a11 from '@/app/assets/images/icons/a11.svg';
+import shopify from '@/app/assets/images/icons/shopify_glyph_black.svg';
 
 // icon values are from devicon library: https://devicon.dev/
 export const skills = [

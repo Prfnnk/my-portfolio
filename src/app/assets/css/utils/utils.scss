@@ -1,0 +1,18 @@
+$baseWidthDp: 1440;
+$maxWidthDp: 1920;
+$baseWidthMb: 320;
+
+@function toRem($value) {
+  $remValue: ($value / 16) + rem;
+  @return $remValue;
+}
+
+@function em($px, $ref) {
+  @return $px / $ref + em;
+}
+
+@function vw($px, $mobile: false) {
+  $base: if($mobile == true, $baseWidthMb, $baseWidthDp);
+
+  @return 100 * $px / $base + vw;
+}

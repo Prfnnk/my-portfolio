@@ -29,7 +29,14 @@ const Projects = () => {
             key={project.title}
           >
             <div className="projects__item-content">
-              <h3>{project.title}</h3>
+              <h3 className="projects__title">{project.title}</h3>
+              <p className="projects__title-stack">
+                {project.stack.map((stack) => (
+                  <span key={stack.name}>
+                    <DevIcon icon={stack.icon} iconName={stack.name} />
+                  </span>
+                ))}
+              </p>
             </div>
             <Image
               className="projects__item-img"
