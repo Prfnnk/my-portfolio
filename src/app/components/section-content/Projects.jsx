@@ -30,13 +30,13 @@ const Projects = () => {
           >
             <div className="projects__item-content">
               <h3 className="projects__title">{project.title}</h3>
-              <p className="projects__title-stack">
+              <div className="projects__title-stack">
                 {project.stack.map((stack) => (
                   <span key={stack.name}>
                     <DevIcon icon={stack.icon} iconName={stack.name} />
                   </span>
                 ))}
-              </p>
+              </div>
             </div>
             <Image
               className="projects__item-img"

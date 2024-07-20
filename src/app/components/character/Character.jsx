@@ -1,15 +1,15 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useSectionOffset } from '@/app/hooks/useSectionOffset';
+import useMousePosition from '../../hooks/useMousePosition';
 import './character.scss';
 
-const Character = ({ mousePosition, offsetTop }) => {
+const Character = ({ sectionRef, offsetTop, hoveredItem }) => {
+  const mousePosition = useMousePosition(sectionRef);
   const [screenSize, setScreenSize] = useState({
     screenWidth: 0,
     screenHeight: 0,
   });
   const [center, setCenter] = useState({ x: 0, y: 0 });
   const centerRef = useRef(null);
-  const { sectionOffset } = useSectionOffset();
 
   useEffect(() => {
     // Get the screen size
@@ -27,7 +27,7 @@ const Character = ({ mousePosition, offsetTop }) => {
     });
   }, [offsetTop]);
 
-  const { x, y } = JSON.parse(mousePosition);
+  const { x, y } = mousePosition;
   const style = {
     transformX: ((x - center.x) / screenSize.screenWidth).toFixed(2),
     // transformY: ((y - (center.y - screenSize.screenHeight * 4))/screenSize.screenHeight).toFixed(2),
@@ -35,7 +35,7 @@ const Character = ({ mousePosition, offsetTop }) => {
   };
 
   return (
-    <div className="character">
+    <div className={`character ${hoveredItem}`}>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 83.47 95.75">
         <defs>
           <style>
@@ -209,11 +209,11 @@ const Character = ({ mousePosition, offsetTop }) => {
                   />
                 </g>
                 <path
-                  className="cls-1"
+                  className="cls-1 eyebrow"
                   d="M31.52,24.34s-3.11.4-4.61,1.34c-.93.58-.9,1.65.22,2.02,1.03.34,3.24.12,4.56-.03,3.22-.37,5.36-1.56,5.15-2.56-.27-1.28-3.62-1.07-5.31-.77Z"
                 />
                 <path
-                  className="cls-1"
+                  className="cls-1 eyebrow"
                   d="M50.37,24.34s3.11.4,4.61,1.34c.93.58.9,1.65-.22,2.02-1.03.34-3.24.12-4.56-.03-3.22-.37-5.36-1.56-5.15-2.56.27-1.28,3.62-1.07,5.31-.77Z"
                 />
                 <path

@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Character from '../character/Character';
-import useMousePosition from '../../hooks/useMousePosition';
 import { useGetDevice } from '@/app/hooks/useGetDevice';
 
 import { hobbies } from '@/app/data/hobbies.js';
@@ -14,28 +13,39 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 const Hobbies = ({ sectionRef, offsetTop }) => {
-  const mousePosition = useMousePosition(sectionRef);
   const isMobile = useGetDevice();
+  const [hoveredItem, setHoveredItem] = useState('');
   const renderSBubbles = () => {
     if (isMobile) {
       return (
         <Swiper
           modules={[A11y]}
           spaceBetween={0}
-          slidesPerView={1}
+          slidesPerView={1.6}
+          centeredSlides={true}
           speed={800}
-          autoplay={{ delay: 2000 }}
         >
-          {hobbies.map((hobby, index) => (
-            <SwiperSlide key={index} className="hobbies__slide">
-              <div
-                className={`hobbies__item hobbies__item--${hobby.title.toLowerCase()}`}
-              >
-                <div className="hobbies__inner">
-                  <p>{hobby.title}</p>
-                  <p>{hobby.description}</p>
-                </div>
-              </div>
+          {hobbies.map((hobby) => (
+            <SwiperSlide key={hobby.title} className="hobbies__slide">
+              {({ isActive }) => {
+                if (isActive) {
+                  setHoveredItem(hobby.title.toLocaleLowerCase());
+                }
+                return (
+                  <div
+                    className={`hobbies__item hobbies__item--${hobby.title.toLowerCase()}`}
+                  >
+                    <div className="hobbies__inner">
+                      <strong className="hobbies__item-title">
+                        {hobby.title}
+                      </strong>
+                      <p className="hobbies__item-description">
+                        {hobby.description}
+                      </p>
+                    </div>
+                  </div>
+                );
+              }}
             </SwiperSlide>
           ))}
         </Swiper>
@@ -45,10 +55,12 @@ const Hobbies = ({ sectionRef, offsetTop }) => {
         <div
           key={index}
           className={`hobbies__item hobbies__item--${hobby.title.toLowerCase()}`}
+          onMouseOver={() => setHoveredItem(hobby.title.toLocaleLowerCase())}
+          onMouseOut={() => setHoveredItem('')}
         >
           <div className="hobbies__inner">
-            <p>{hobby.title}</p>
-            <p>{hobby.description}</p>
+            <strong className="hobbies__item-title">{hobby.title}</strong>
+            <p className="hobbies__item-description">{hobby.description}</p>
           </div>
         </div>
       ));
@@ -61,8 +73,9 @@ const Hobbies = ({ sectionRef, offsetTop }) => {
       <div className="hobbies__wrap">{renderSBubbles()}</div>
       <div className="hobbies__svg">
         <Character
-          mousePosition={JSON.stringify(mousePosition)}
+          sectionRef={sectionRef}
           offsetTop={offsetTop}
+          hoveredItem={hoveredItem}
         />
       </div>
     </div>

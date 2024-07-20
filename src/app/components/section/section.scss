@@ -432,7 +432,49 @@
   }
   &__svg {
     margin-top: auto;
+
+    .character {
+      &.knitting {
+        .eyebrow {
+          transition: transform 0.5s ease;
+          animation: eybrowsRise 0.25s cubic-bezier(0.68, 0.92, 0.68, 1.03)
+            alternate;
+          animation-iteration-count: 4;
+        }
+      }
+      &.gardening {
+        .eye {
+          transition: transform 0.5s ease;
+          animation: bombasticSideEye 1.5s ease;
+        }
+      }
+    }
   }
+
+  @keyframes eybrowsRise {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-0.15rem);
+    }
+  }
+
+  @keyframes bombasticSideEye {
+    0% {
+      transform: translateX(0);
+    }
+    33% {
+      transform: translateX(-1px);
+    }
+    66% {
+      transform: translateX(1px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
   &__inner {
     position: relative;
     padding: 2rem;
@@ -466,15 +508,26 @@
     max-height: toRem(225);
     margin-inline: auto;
 
+    &-title {
+      font-size: clamp(16px, vw(24), toRem(32));
+      margin-bottom: toRem(10);
+    }
+
+    &-description {
+      font-size: toRem(15);
+    }
+
     @media (min-width: 768px) {
-      flex: 1 1;
-      height: auto;
+      height: fit-content;
       width: auto;
     }
 
     &--cycling {
       .hobbies__inner::before {
         transform: scale(1, -1);
+      }
+      @media (min-width: 768px) {
+        margin-top: 16%;
       }
     }
     &--travelling {
@@ -485,6 +538,9 @@
     &--gardening {
       .hobbies__inner::before {
         transform: scale(-1, -1);
+      }
+      @media (min-width: 768px) {
+        margin-top: 10%;
       }
     }
   }

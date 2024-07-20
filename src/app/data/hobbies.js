@@ -5,11 +5,11 @@ export const hobbies = [
   },
   {
     title: 'Cycling',
-    description: 'Hobby description',
+    description: 'Exploring beautiful Netherlands.',
   },
   {
     title: 'Travelling',
-    description: 'Hobby description',
+    description: 'Our world is so amaizing!',
   },
   {
     title: 'Gardening',
