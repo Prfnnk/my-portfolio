@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Character from '../character/Character';
+import HobbyItem from '@/app/components/hobbyItem/HobbyItem';
 import { useGetDevice } from '@/app/hooks/useGetDevice';
 
 import { hobbies } from '@/app/data/hobbies.js';
@@ -7,10 +8,6 @@ import { hobbies } from '@/app/data/hobbies.js';
 // Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { A11y } from 'swiper/modules';
-
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
 
 const Hobbies = ({ sectionRef, offsetTop }) => {
   const isMobile = useGetDevice();
@@ -20,7 +17,7 @@ const Hobbies = ({ sectionRef, offsetTop }) => {
       return (
         <Swiper
           modules={[A11y]}
-          spaceBetween={0}
+          spaceBetween={28}
           slidesPerView={1.6}
           centeredSlides={true}
           speed={800}
@@ -31,37 +28,21 @@ const Hobbies = ({ sectionRef, offsetTop }) => {
                 if (isActive) {
                   setHoveredItem(hobby.title.toLocaleLowerCase());
                 }
-                return (
-                  <div
-                    className={`hobbies__item hobbies__item--${hobby.title.toLowerCase()}`}
-                  >
-                    <div className="hobbies__inner">
-                      <strong className="hobbies__item-title">
-                        {hobby.title}
-                      </strong>
-                      <p className="hobbies__item-description">
-                        {hobby.description}
-                      </p>
-                    </div>
-                  </div>
-                );
+                return <HobbyItem hobby={hobby} />;
               }}
             </SwiperSlide>
           ))}
         </Swiper>
       );
     } else {
-      return hobbies.map((hobby, index) => (
+      return hobbies.map((hobby) => (
         <div
-          key={index}
-          className={`hobbies__item hobbies__item--${hobby.title.toLowerCase()}`}
+          className="hobby__wrap"
+          key={hobby.title}
           onMouseOver={() => setHoveredItem(hobby.title.toLocaleLowerCase())}
           onMouseOut={() => setHoveredItem('')}
         >
-          <div className="hobbies__inner">
-            <strong className="hobbies__item-title">{hobby.title}</strong>
-            <p className="hobbies__item-description">{hobby.description}</p>
-          </div>
+          <HobbyItem hobby={hobby} />
         </div>
       ));
     }

@@ -11,13 +11,13 @@ const Contact = () => {
             <span>email@gmail.com</span>
           </span>
         </a>
-        <a className="contact__item" href="linkedin.com">
+        <a className="contact__item" href="linkedin.com" target="_blank">
           <span className="contact__item-inner">
             <span>LinkedIn</span>
             <span>LinkedIn.com</span>
           </span>
         </a>
-        <a className="contact__item" href="github.com">
+        <a className="contact__item" href="github.com" target="_blank">
           <span className="contact__item-inner">
             <span>Github</span>
             <span>Github.com</span>

@@ -1,7 +1,9 @@
 'use client';
-import React, { useState, useCallback, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import Section from './components/section/Section';
 import Nav from './components/nav/Nav';
+
+import { useIntersectionObserver } from '@/app/hooks/useIntersectionObserver';
 
 export default function Home() {
   const sectionsArr = [
@@ -14,25 +16,6 @@ export default function Home() {
   ];
 
   const [sectionScrollY, setSectionScrollY] = useState({});
-
-  const useIntersectionObserver = (options, cb) => {
-    const observer = useRef(null);
-
-    return useCallback(
-      (node) => {
-        if (!node) {
-          if (observer.current) {
-            observer.current.disconnect();
-          }
-          return;
-        }
-
-        observer.current = new window.IntersectionObserver(cb, options);
-        observer.current.observe(node);
-      },
-      [cb, options]
-    );
-  };
 
   // Intersaction Observer
   const [entryId, setEntryId] = useState('');
@@ -51,10 +34,10 @@ export default function Home() {
         entryId={entryId}
         sectionScrollY={sectionScrollY}
       />
-      {sectionsArr.map((title, index) => (
+      {sectionsArr.map((title) => (
         <Section
           refProp={cbRef}
-          key={index}
+          key={title}
           title={title}
           setSectionScrollY={setSectionScrollY}
           sectionScrollY={sectionScrollY}

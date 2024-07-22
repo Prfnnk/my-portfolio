@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+// Custom hook to track the mouse cursor movement
 const useMousePosition = (elementRef) => {
   const [mousePosition, setMousePosition] = useState({ x: null, y: null });
   useEffect(() => {

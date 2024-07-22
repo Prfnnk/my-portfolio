@@ -1,7 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import meImg from '@/app/assets/me.png';
-import meOriginal from '@/app/assets/me_original.jpeg';
+import meOriginal from '@/app/assets/images/me_original.jpeg';
 
 const About = () => {
   return (

@@ -429,6 +429,12 @@
   &__wrap {
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @media (min-width: 900px) {
+      flex-wrap: nowrap;
+    }
   }
   &__svg {
     margin-top: auto;
@@ -490,6 +496,10 @@
       padding: 3.5vw;
     }
 
+    @media (min-width: 1440px) {
+      padding: toRem(50);
+    }
+
     &:before {
       content: '';
       position: absolute;
@@ -497,19 +507,19 @@
       left: -10%;
       right: -10%;
       bottom: -15%;
-      background: url('../../assets/bubble_shape.svg') no-repeat 50% 50%/100%
+      background: url('../../assets/images/bubble_shape.svg') no-repeat 50% 50%/100%
         100%;
     }
   }
   &__item {
-    width: 80%;
+    width: 90%;
     height: 62vw;
     max-width: toRem(250);
     max-height: toRem(225);
     margin-inline: auto;
 
     &-title {
-      font-size: clamp(16px, vw(24), toRem(32));
+      font-size: clamp(16px, vw(24), toRem(24));
       margin-bottom: toRem(10);
     }
 
@@ -527,7 +537,7 @@
         transform: scale(1, -1);
       }
       @media (min-width: 768px) {
-        margin-top: 16%;
+        margin-top: 16vh;
       }
     }
     &--travelling {
@@ -540,7 +550,7 @@
         transform: scale(-1, -1);
       }
       @media (min-width: 768px) {
-        margin-top: 10%;
+        margin-top: 12vh;
       }
     }
   }

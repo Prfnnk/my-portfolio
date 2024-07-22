@@ -10,10 +10,6 @@ import { projects } from '@/app/data/projects.js';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, A11y } from 'swiper/modules';
 
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-
 const Projects = () => {
   const mobileProjectsArr = projects.flat();
   const isMobile = useGetDevice();

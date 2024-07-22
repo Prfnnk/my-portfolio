@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './nav.scss';
 
 const Nav = ({ navArr, entryId, sectionScrollY }) => {
-  const [postionObject, setPositionObject] = useState({});
+  const [positionObject, setPositionObject] = useState({});
 
   useEffect(() => {
     setPositionObject(sectionScrollY);
@@ -11,17 +11,17 @@ const Nav = ({ navArr, entryId, sectionScrollY }) => {
   const handleClick = (e, item) => {
     e.preventDefault();
     window.scrollTo({
-      top: postionObject[item],
+      top: positionObject[item],
       behavior: 'smooth',
     });
   };
   return (
     <nav className="nav">
       <ul className="nav__list">
-        {navArr.map((item, index) => (
+        {navArr.map((item) => (
           <li
             className={`nav__item ${entryId === item ? 'nav__item--active' : ''}`}
-            key={index}
+            key={item}
           >
             <a className="nav__item-link" onClick={(e) => handleClick(e, item)}>
               <span className="nav__item-name">{item}</span>

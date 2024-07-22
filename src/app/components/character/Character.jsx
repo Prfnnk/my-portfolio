@@ -23,7 +23,7 @@ const Character = ({ sectionRef, offsetTop, hoveredItem }) => {
     // Get the center of the screen
     setCenter({
       x: centerRef.current.getBoundingClientRect().x,
-      y: offsetTop,
+      y: Math.abs(offsetTop),
     });
   }, [offsetTop]);
 
