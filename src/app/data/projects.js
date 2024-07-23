@@ -7,7 +7,6 @@ import popsaSrc from '@/app/assets/images/projects/popsa.png';
 
 import gsapSrc from '@/app/assets/images/icons/gsap.jpeg';
 import pugSrc from '@/app/assets/images/icons/pug.svg';
-import shopifySrc from '@/app/assets/images/icons/shopify_glyph_black.svg';
 import liquidSrc from '@/app/assets/images/icons/liquid.png';
 
 // icon values are from devicon library: https://devicon.dev/
@@ -50,7 +49,7 @@ export const projects = [
         },
         {
           name: 'Shopify',
-          icon: shopifySrc,
+          icon: 'Shopify',
         },
       ],
       link: 'https://nl.stoov.com/',
@@ -117,7 +116,7 @@ export const projects = [
         },
         {
           name: 'Shopify',
-          icon: shopifySrc,
+          icon: 'Shopify',
         },
       ],
       link: 'https://cancelculture.afisha.ru/',

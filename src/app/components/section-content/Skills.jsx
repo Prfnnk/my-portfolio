@@ -9,8 +9,10 @@ const Skills = () => {
       <div className="skills__wrap">
         {skills.map((skill) => (
           <div className="skills__item" key={skill.title}>
-            <DevIcon icon={skill.icon} iconName={skill.title} />
-            <p className="skills__item-name">{skill.title}</p>
+            <div className="skills__item-inner">
+              <DevIcon icon={skill.icon} iconName={skill.title} />
+              <p className="skills__item-name">{skill.title}</p>
+            </div>
           </div>
         ))}
       </div>

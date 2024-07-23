@@ -149,6 +149,15 @@
     }
   }
 
+  .section__subtitle {
+    @media (min-width: 768px) {
+      margin-bottom: vw(100);
+    }
+    @media (min-width: 1440px) {
+      margin-bottom: toRem(100);
+    }
+  }
+
   &__description {
     font-size: clamp(14px, 2.15vh, 20px);
     line-height: 1.5;
@@ -245,18 +254,73 @@
     @media (min-width: 768px) {
       gap: 2vw;
     }
+    @media (min-width: 1440px) {
+      gap: toRem(28);
+    }
+  }
+
+  .section__subtitle {
+    @media (min-width: 768px) {
+      margin-bottom: vw(100);
+    }
+    @media (min-width: 1440px) {
+      margin-bottom: toRem(80);
+    }
   }
 
   &__item {
     flex: 1 1 15%;
     text-align: center;
     border-radius: 1rem;
-    border: 1px solid var(--color-burnished-brown);
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 1rem;
+    padding: 1px;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    transition: transform 0.5s ease;
+
+    &-inner {
+      border-radius: 1rem;
+      border: 1px solid var(--color-burnished-brown);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+      background-color: var(--color-sweet-corn);
+      z-index: 10;
+      position: relative;
+      border-radius: 1rem;
+      transition: transform 0.5s ease;
+    }
+
+    &::before {
+      content: '';
+      display: block;
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        #b43737 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      height: 200%;
+      width: 30%;
+      transform: translate(0);
+      position: absolute;
+      z-index: 0;
+      top: 50%;
+      left: 35%;
+      transform-origin: top center;
+      opacity: 0;
+    }
+
+    &:hover {
+      transform: scale(0.95);
+
+      &::before {
+        animation: rotate 3.5s linear forwards infinite;
+        opacity: 1;
+      }
+    }
 
     @media (min-width: 600px) {
       flex: 1 1 18%;
@@ -314,7 +378,10 @@
   }
   .section__subtitle {
     @media (min-width: 768px) {
-      margin-bottom: 10vh;
+      margin-bottom: vw(100);
+    }
+    @media (min-width: 1440px) {
+      margin-bottom: toRem(80);
     }
   }
   &__item {
@@ -398,6 +465,17 @@
       gap: em(10, 28);
       color: var(--color-sweet-corn);
 
+      span {
+        display: inline-block;
+
+        svg {
+          width: em(18, 16);
+          @media (min-width: 768px) {
+            width: em(28, 28);
+          }
+        }
+      }
+
       @media (min-width: 768px) {
         opacity: 0;
         position: absolute;
@@ -426,11 +504,57 @@
   height: 100%;
   flex: 1;
 
+  .section__subtitle {
+    @media (min-width: 768px) {
+      margin-bottom: vw(100);
+    }
+
+    @media (min-width: 1440px) {
+      margin-bottom: toRem(56);
+    }
+  }
+
   &__wrap {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
     justify-content: center;
+    position: relative;
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: toRem(40);
+      height: 100%;
+      z-index: 10;
+    }
+    &:before {
+      left: toRem(-12);
+      background: linear-gradient(
+        90deg,
+        rgba(252, 246, 245, 1) 0%,
+        rgba(252, 246, 245, 1) 45%,
+        rgba(252, 246, 245, 0) 100%
+      );
+    }
+    &:after {
+      right: toRem(-12);
+      background: linear-gradient(
+        -90deg,
+        rgba(252, 246, 245, 1) 0%,
+        rgba(252, 246, 245, 1) 45%,
+        rgba(252, 246, 245, 0) 100%
+      );
+    }
+
+    @media (min-width: 768px) {
+      &:before,
+      &:after {
+        display: none;
+      }
+    }
 
     @media (min-width: 900px) {
       flex-wrap: nowrap;
@@ -608,9 +732,16 @@
     color: var(--color-toffee);
     white-space: nowrap;
     font-size: toRem(14);
+    padding-right: toRem(20);
 
     @media (min-width: 600px) {
       font-size: toRem(16);
+      padding: 0;
+    }
+
+    &-name {
+      white-space: break-spaces;
+      text-align: right;
     }
   }
 }

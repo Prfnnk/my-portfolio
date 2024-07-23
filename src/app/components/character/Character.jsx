@@ -30,7 +30,6 @@ const Character = ({ sectionRef, offsetTop, hoveredItem }) => {
   const { x, y } = mousePosition;
   const style = {
     transformX: ((x - center.x) / screenSize.screenWidth).toFixed(2),
-    // transformY: ((y - (center.y - screenSize.screenHeight * 4))/screenSize.screenHeight).toFixed(2),
     transformY: ((y - center.y) / screenSize.screenHeight).toFixed(2),
   };
 
