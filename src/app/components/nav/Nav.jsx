@@ -22,10 +22,11 @@ const Nav = ({ navArr, entryId, sectionScrollY }) => {
           <li
             className={`nav__item ${entryId === item ? 'nav__item--active' : ''}`}
             key={item}
+            onClick={(e) => handleClick(e, item)}
           >
-            <a className="nav__item-link" onClick={(e) => handleClick(e, item)}>
+            <p className="nav__item-link">
               <span className="nav__item-name">{item}</span>
-            </a>
+            </p>
           </li>
         ))}
       </ul>

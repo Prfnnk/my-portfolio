@@ -1,3 +1,5 @@
+@import 'src/app/assets/css/utils/utils.scss';
+
 .nav {
   height: 100vh;
   position: fixed;
@@ -22,18 +24,28 @@
     position: relative;
     pointer-events: all;
     cursor: pointer;
+    min-width: toRem(16);
+    min-height: toRem(18);
 
     &:before {
       content: '';
       position: absolute;
       top: calc(50% - 0.5rem);
       left: 0;
-      width: 0.75rem;
-      height: 0.75rem;
+      width: toRem(12);
+      height: toRem(12);
       border-radius: 50%;
       border: 2px solid var(--color-toffee);
       pointer-events: none;
       transition: background-color 0.3s cubic-bezier(0.28, 0.38, 0.57, 1);
+    }
+
+    &-link {
+      display: none;
+
+      @media (min-width: 768px) {
+        display: inline-block;
+      }
     }
 
     &:hover,
