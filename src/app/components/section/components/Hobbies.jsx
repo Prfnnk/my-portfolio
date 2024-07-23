@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Character from '../character/Character';
+import Character from '@/app/components/character/Character';
 import HobbyItem from '@/app/components/hobbyItem/HobbyItem';
 import { useGetDevice } from '@/app/hooks/useGetDevice';
 
@@ -53,6 +53,18 @@ const Hobbies = ({ sectionRef, offsetTop }) => {
       <h1 className="section__subtitle">Hobbies</h1>
       <div className="hobbies__wrap">{renderSBubbles()}</div>
       <div className="hobbies__svg">
+        <div className={`hobbies__emoji ${hoveredItem}`}>
+          {hobbies.map((hobby) =>
+            hobby.emoji.map((emoji, index) => (
+              <span
+                key={hobby.title + index}
+                className={`hobbies__emoji-item ${hoveredItem === hobby.title.toLocaleLowerCase() ? 'hobbies__emoji-item--active' : ''}`}
+              >
+                {emoji}
+              </span>
+            ))
+          )}
+        </div>
         <Character
           sectionRef={sectionRef}
           offsetTop={offsetTop}

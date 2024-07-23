@@ -1,19 +1,20 @@
 import React from 'react';
 
 const Contact = () => {
+  const copyEmail = (e) => {
+    console.log(e);
+    const email = e.target.dataset.email;
+    const span = e.target.querySelector('[data-email-span]');
+    navigator.clipboard.writeText(email);
+    span.innerHTML = 'Done!';
+    setTimeout(() => {
+      span.innerHTML = 'Copy';
+    }, 2000);
+  };
   return (
     <div className="contact">
       <h2 className="section__subtitle">Contacts</h2>
       <div className="contact__links">
-        <a
-          className="contact__item"
-          href="mailto:abdurakhmanovamaria@gmail.com"
-        >
-          <span className="contact__item-inner">
-            <span>E-mail</span>
-            <span>Copy</span>
-          </span>
-        </a>
         <a
           className="contact__item"
           href="https://www.linkedin.com/in/abdurakhmanova-maria/"
@@ -24,6 +25,18 @@ const Contact = () => {
             <span>Visit profile</span>
           </span>
         </a>
+        <p
+          className="contact__item contact__item--email"
+          onClick={(event) => {
+            copyEmail(event);
+          }}
+          data-email="abdurakhmanovamaria@gmail.com"
+        >
+          <span className="contact__item-inner">
+            <span>E-mail</span>
+            <span data-email-span>Copy</span>
+          </span>
+        </p>
         <a
           className="contact__item"
           href="https://github.com/Prfnnk"

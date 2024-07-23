@@ -39,58 +39,58 @@ const Character = ({ sectionRef, offsetTop, hoveredItem }) => {
         <defs>
           <style>
             {`
-                    .cls-1 {
-                        fill: #995342;
-                    }
+              .cls-1 {
+                  fill: #995342;
+              }
 
-                    .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
-                        stroke-width: 0px;
-                    }
+              .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+                  stroke-width: 0px;
+              }
 
-                    .cls-2 {
-                        fill: #c37c56;
-                    }
+              .cls-2 {
+                  fill: #c37c56;
+              }
 
-                    .cls-7 {
-                        stroke: #995342;
-                        stroke-width: .48px;
-                    }
+              .cls-7 {
+                  stroke: #995342;
+                  stroke-width: .48px;
+              }
 
-                    .cls-7, .cls-8 {
-                        fill: none;
-                        stroke-linecap: round;
-                        stroke-linejoin: round;
-                    }
+              .cls-7, .cls-8 {
+                  fill: none;
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+              }
 
-                    .cls-3, .cls-9 {
-                        fill: #f9c2ab;
-                    }
+              .cls-3, .cls-9 {
+                  fill: #f9c2ab;
+              }
 
-                    .cls-4 {
-                        fill: #39779c;
-                    }
+              .cls-4 {
+                  fill: #39779c;
+              }
 
-                    .cls-10, .cls-6 {
-                        fill: #fff;
-                    }
+              .cls-10, .cls-6 {
+                  fill: #fff;
+              }
 
-                    .cls-5 {
-                        fill: #de5a62;
-                    }
+              .cls-5 {
+                  fill: #de5a62;
+              }
 
-                    .cls-11 {
-                        clip-path: url(#clippath-1);
-                    }
+              .cls-11 {
+                  clip-path: url(#clippath-1);
+              }
 
-                    .cls-12 {
-                        clip-path: url(#clippath-2);
-                    }
+              .cls-12 {
+                  clip-path: url(#clippath-2);
+              }
 
-                    .cls-8 {
-                        stroke: #000;
-                        stroke-width: .38px;
-                    }
-                        `}
+              .cls-8 {
+                  stroke: #000;
+                  stroke-width: .38px;
+              }
+                `}
           </style>
           <clipPath id="clippath-1">
             <path

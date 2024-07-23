@@ -560,25 +560,73 @@
       flex-wrap: nowrap;
     }
   }
-  &__svg {
-    margin-top: auto;
 
-    .character {
-      &.knitting {
-        .eyebrow {
-          transition: transform 0.5s ease;
-          animation: eybrowsRise 0.25s cubic-bezier(0.68, 0.92, 0.68, 1.03)
-            alternate;
-          animation-iteration-count: 4;
-        }
+  &__emoji {
+    position: absolute;
+    top: -60%;
+    left: 0;
+    width: 100%;
+    height: 80%;
+
+    @media (min-width: 768px) {
+      top: 0;
+      height: 100%;
+    }
+
+    &-item {
+      font-size: toRem(48);
+      position: absolute;
+      opacity: 0;
+      transform: translateY(0.5rem);
+      transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+
+      &--active {
+        opacity: 1;
+        transform: translateY(0);
       }
-      &.gardening {
-        .eye {
-          transition: transform 0.5s ease;
-          animation: bombasticSideEye 1.5s ease;
+
+      @for $i from 1 through 50 {
+        &:nth-child(#{$i}) {
+          top: random(80) * 1%;
+
+          &:nth-child(odd) {
+            left: random(28) + 4%;
+          }
+
+          &:nth-child(even) {
+            right: random(28) + 4%;
+          }
+
+          &.hobbies__emoji-item--active {
+            transition-delay: random(5) * 0.1s;
+          }
         }
       }
     }
+  }
+
+  &__svg {
+    margin-top: auto;
+    position: relative;
+
+    // .character {
+    //   &.knitting {
+    //     .eyebrow {
+    //       transition: transform 0.5s ease;
+    //       animation: eybrowsRise 0.25s cubic-bezier(0.68, 0.92, 0.68, 1.03)
+    //         alternate;
+    //       animation-iteration-count: 4;
+    //     }
+    //   }
+    //   &.gardening {
+    //     .eye {
+    //       transition: transform 0.5s ease;
+    //       animation: bombasticSideEye 1.5s ease;
+    //     }
+    //   }
+    // }
   }
 
   @keyframes eybrowsRise {
@@ -697,13 +745,13 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 3.5rem;
+    gap: toRem(32);
     align-items: center;
     font-size: 1.25rem;
 
     @media (min-width: 600px) {
       flex-direction: row;
-      gap: 1.5rem;
+      gap: toRem(40);
     }
   }
 
@@ -711,10 +759,15 @@
     height: 1.75rem;
     overflow: hidden;
 
+    &--email {
+      cursor: pointer;
+    }
+
     &-inner {
       display: flex;
       flex-direction: column;
       transition: transform 0.5s ease;
+      pointer-events: none;
     }
 
     &:hover & {
