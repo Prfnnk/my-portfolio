@@ -616,47 +616,6 @@
   &__svg {
     margin-top: auto;
     position: relative;
-
-    .character {
-      &.knitting {
-        .eyebrow {
-          transition: transform 0.5s ease;
-          animation: eybrowsRise 0.25s cubic-bezier(0.68, 0.92, 0.68, 1.03)
-            alternate;
-          animation-iteration-count: 4;
-        }
-      }
-      &.gardening {
-        .eye {
-          transition: transform 0.5s ease;
-          animation: bombasticSideEye 1.5s ease;
-        }
-      }
-    }
-  }
-
-  @keyframes eybrowsRise {
-    from {
-      transform: translateY(0);
-    }
-    to {
-      transform: translateY(-0.15rem);
-    }
-  }
-
-  @keyframes bombasticSideEye {
-    0% {
-      transform: translateX(0);
-    }
-    33% {
-      transform: translateX(-1px);
-    }
-    66% {
-      transform: translateX(1px);
-    }
-    100% {
-      transform: translateX(0);
-    }
   }
 
   &__inner {

@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
+import Image from 'next/image';
 import useMousePosition from '../../hooks/useMousePosition';
 import './character.scss';
+import sunglasses from '@/app/assets/images/icons/sunglasses.svg';
+import hat from '@/app/assets/images/icons/hat.svg';
 
 const Character = ({ sectionRef, offsetTop, hoveredItem }) => {
   const mousePosition = useMousePosition(sectionRef);
@@ -35,6 +38,12 @@ const Character = ({ sectionRef, offsetTop, hoveredItem }) => {
 
   return (
     <div className={`character ${hoveredItem}`}>
+      <div className="character__sunglasses" aria-hidden="true">
+        <Image src={sunglasses} alt="Sunglasses" />
+      </div>
+      <div className="character__hat">
+        <Image src={hat} alt="Hat" />
+      </div>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 83.47 95.75">
         <defs>
           <style>
