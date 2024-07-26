@@ -275,10 +275,10 @@
     padding: 1px;
     position: relative;
     overflow: hidden;
-    height: 100%;
     transition: transform 0.5s ease;
 
     &-inner {
+      height: 100%;
       border-radius: 1rem;
       border: 1px solid var(--color-burnished-brown);
       padding: 1rem;
@@ -337,6 +337,7 @@
 
       img {
         object-fit: contain;
+        display: block;
       }
     }
 
@@ -528,7 +529,7 @@
       top: 0;
       width: toRem(40);
       height: 100%;
-      z-index: 10;
+      z-index: 2;
     }
     &:before {
       left: toRem(-12);
@@ -567,6 +568,7 @@
     left: 0;
     width: 100%;
     height: 80%;
+    pointer-events: none;
 
     @media (min-width: 768px) {
       top: 0;
@@ -574,7 +576,7 @@
     }
 
     &-item {
-      font-size: toRem(48);
+      font-size: toRem(32);
       position: absolute;
       opacity: 0;
       transform: translateY(0.5rem);
@@ -585,6 +587,10 @@
       &--active {
         opacity: 1;
         transform: translateY(0);
+      }
+
+      @media (min-width: 900px) {
+        font-size: toRem(48);
       }
 
       @for $i from 1 through 50 {
@@ -611,22 +617,22 @@
     margin-top: auto;
     position: relative;
 
-    // .character {
-    //   &.knitting {
-    //     .eyebrow {
-    //       transition: transform 0.5s ease;
-    //       animation: eybrowsRise 0.25s cubic-bezier(0.68, 0.92, 0.68, 1.03)
-    //         alternate;
-    //       animation-iteration-count: 4;
-    //     }
-    //   }
-    //   &.gardening {
-    //     .eye {
-    //       transition: transform 0.5s ease;
-    //       animation: bombasticSideEye 1.5s ease;
-    //     }
-    //   }
-    // }
+    .character {
+      &.knitting {
+        .eyebrow {
+          transition: transform 0.5s ease;
+          animation: eybrowsRise 0.25s cubic-bezier(0.68, 0.92, 0.68, 1.03)
+            alternate;
+          animation-iteration-count: 4;
+        }
+      }
+      &.gardening {
+        .eye {
+          transition: transform 0.5s ease;
+          animation: bombasticSideEye 1.5s ease;
+        }
+      }
+    }
   }
 
   @keyframes eybrowsRise {
@@ -669,7 +675,7 @@
     }
 
     @media (min-width: 1440px) {
-      padding: toRem(50);
+      padding: toRem(48);
     }
 
     &:before {
@@ -699,9 +705,15 @@
       font-size: toRem(15);
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 900px) {
       height: fit-content;
       width: auto;
+    }
+
+    &--knitting {
+      @media (min-width: 768px) {
+        margin-top: vw(-40);
+      }
     }
 
     &--cycling {
@@ -709,12 +721,14 @@
         transform: scale(1, -1);
       }
       @media (min-width: 768px) {
-        margin-top: 16vh;
+        margin-top: vw(110);
       }
     }
     &--travelling {
-      .hobbies__inner::before {
-        transform: scale(-1, 1);
+      .hobbies__inner {
+        &:before {
+          transform: scale(-1, 1);
+        }
       }
     }
     &--gardening {
@@ -722,7 +736,7 @@
         transform: scale(-1, -1);
       }
       @media (min-width: 768px) {
-        margin-top: 12vh;
+        margin-top: vw(130);
       }
     }
   }

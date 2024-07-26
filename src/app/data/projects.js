@@ -119,7 +119,7 @@ export const projects = [
           icon: 'Shopify',
         },
       ],
-      link: 'https://cancelculture.afisha.ru/',
+      link: 'https://insectheroes.nl/',
     },
     {
       title: 'Pop Music History',

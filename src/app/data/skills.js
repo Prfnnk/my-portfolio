@@ -7,16 +7,20 @@ import shopify from '@/app/assets/images/icons/shopify_glyph_black.svg';
 // icon values are from devicon library: https://devicon.dev/
 export const skills = [
   {
-    title: 'HTML',
-    icon: 'html5-plain',
+    title: 'React',
+    icon: 'react-original',
   },
   {
-    title: 'CSS',
-    icon: 'css3-plain',
+    title: 'Next',
+    icon: 'nextjs-line',
   },
   {
-    title: 'JavaScript',
-    icon: 'javascript-plain',
+    title: 'Vue.js',
+    icon: 'vuejs-plain',
+  },
+  {
+    title: 'Nuxt',
+    icon: 'nuxtjs-plain',
   },
   {
     title: 'Typescript',
@@ -25,6 +29,22 @@ export const skills = [
   {
     title: 'Webpack',
     icon: 'webpack-plain',
+  },
+  {
+    title: 'Vite',
+    icon: 'vite-original',
+  },
+  {
+    title: 'Scss',
+    icon: 'sass-original',
+  },
+  {
+    title: 'Tailwind',
+    icon: 'tailwindcss-original',
+  },
+  {
+    title: 'Git',
+    icon: 'git-plain',
   },
   {
     title: 'Shopify',
@@ -47,35 +67,15 @@ export const skills = [
     icon: a11,
   },
   {
-    title: 'React',
-    icon: 'react-original',
+    title: 'JavaScript',
+    icon: 'javascript-plain',
   },
   {
-    title: 'Next',
-    icon: 'nextjs-line',
+    title: 'HTML',
+    icon: 'html5-plain',
   },
   {
-    title: 'Vue.js',
-    icon: 'vuejs-plain',
-  },
-  {
-    title: 'Nuxt',
-    icon: 'nuxtjs-plain',
-  },
-  {
-    title: 'Tailwind',
-    icon: 'tailwindcss-original',
-  },
-  {
-    title: 'Scss',
-    icon: 'sass-original',
-  },
-  {
-    title: 'Git',
-    icon: 'git-plain',
-  },
-  {
-    title: 'Vite',
-    icon: 'vite-original',
+    title: 'CSS',
+    icon: 'css3-plain',
   },
 ];

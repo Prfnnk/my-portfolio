@@ -15,7 +15,7 @@ const About = () => {
           <p>Hello and welcome to my portfolio!</p>
           <p>
             My name is <strong>Maria</strong>, I&lsquo;m a frontend developer
-            with <strong>over four years</strong> of experience.
+            with <strong>over 4 years</strong> of experience.
           </p>
           <p>
             Originally from Moscow, I&nbsp;now call the vibrant city of&nbsp;
