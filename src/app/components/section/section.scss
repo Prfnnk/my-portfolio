@@ -492,9 +492,9 @@
   }
 
   .icon-image {
-    width: em(24, 16);
+    width: em(26, 16);
     @media (min-width: 768px) {
-      width: em(36, 28);
+      width: em(38, 28);
     }
   }
 }
@@ -595,14 +595,18 @@
 
       @for $i from 1 through 50 {
         &:nth-child(#{$i}) {
-          top: random(80) * 1%;
+          top: random(60) * 1%;
+          left: random(80) + 5%;
 
-          &:nth-child(odd) {
-            left: random(28) + 4%;
-          }
+          @media (min-width: 768px) {
+            &:nth-child(odd) {
+              left: random(24) + 4%;
+            }
 
-          &:nth-child(even) {
-            right: random(28) + 4%;
+            &:nth-child(even) {
+              left: auto;
+              right: random(28) + 4%;
+            }
           }
 
           &.hobbies__emoji-item--active {

@@ -40,6 +40,10 @@ export const projects = [
       img: stoovSrc,
       stack: [
         {
+          name: 'Javascript',
+          icon: 'javascript-plain',
+        },
+        {
           name: 'Liquid',
           icon: liquidSrc,
         },
@@ -106,6 +110,10 @@ export const projects = [
       title: 'Insect Heroes',
       img: InsectHeroesSrc,
       stack: [
+        {
+          name: 'Javascript',
+          icon: 'javascript-plain',
+        },
         {
           name: 'Liquid',
           icon: liquidSrc,
