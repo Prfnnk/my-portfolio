@@ -487,6 +487,113 @@
     }
   }
 
+  &__geo-badge {
+    position: absolute;
+    top: toRem(12);
+    left: toRem(12);
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.55);
+    color: var(--color-sweet-corn);
+    font-size: toRem(11);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: toRem(4) toRem(10);
+    border-radius: toRem(6);
+    backdrop-filter: blur(4px);
+    pointer-events: none;
+    line-height: 1.3;
+
+    @media (min-width: 768px) {
+      font-size: toRem(12);
+      top: toRem(16);
+      left: toRem(16);
+      padding: toRem(5) toRem(12);
+    }
+  }
+
+  &__item--geo-restricted {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+
+    &:focus {
+      outline: none;
+    }
+
+    .projects__item-img {
+      filter: saturate(0.85);
+    }
+  }
+
+  &__popover {
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    gap: toRem(8);
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: toRem(12);
+    padding: toRem(16);
+    min-width: toRem(220);
+
+    @media (min-width: 768px) {
+      padding: toRem(20);
+      min-width: toRem(240);
+      gap: toRem(10);
+    }
+  }
+
+  &__popover-link {
+    display: block;
+    text-align: center;
+    padding: toRem(10) toRem(16);
+    border-radius: toRem(8);
+    font-size: toRem(13);
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    background-color: var(--color-sweet-corn);
+    color: var(--color-toffee);
+
+    &:hover {
+      background-color: var(--color-toffee);
+      color: var(--color-sweet-corn);
+    }
+
+    &--vpn {
+      background-color: transparent;
+      color: var(--color-sweet-corn);
+      border: 1px solid var(--color-sweet-corn);
+
+      &:hover {
+        background-color: var(--color-sweet-corn);
+        color: var(--color-toffee);
+      }
+    }
+
+    @media (min-width: 768px) {
+      font-size: toRem(14);
+      padding: toRem(12) toRem(20);
+    }
+  }
+
+  &__note {
+    font-size: toRem(12);
+    color: var(--color-toffee);
+    opacity: 0.6;
+    text-align: center;
+    margin: toRem(16) auto 0;
+    line-height: 1.5;
+
+    @media (min-width: 768px) {
+      font-size: toRem(13);
+      margin-top: toRem(20);
+    }
+  }
+
   .icon-plain {
     font-size: 1.25em;
   }

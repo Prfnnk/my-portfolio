@@ -36,6 +36,9 @@ export const projects = [
         },
       ],
       link: 'https://naturella.lenta.ru/',
+      geoRestricted: true,
+      archiveLink:
+        'http://web.archive.org/web/20241208181629/https://naturella.lenta.ru/',
     },
     {
       title: "Tony's Chocolonely",
@@ -82,6 +85,9 @@ export const projects = [
         },
       ],
       link: 'https://cancelculture.afisha.ru/',
+      geoRestricted: true,
+      archiveLink:
+        'http://web.archive.org/web/20251214121815/https://cancelculture.afisha.ru/',
     },
   ],
   [
@@ -107,6 +113,9 @@ export const projects = [
         },
       ],
       link: 'https://whattodo.lenta.ru/',
+      geoRestricted: true,
+      archiveLink:
+        'http://web.archive.org/web/20251116174023/https://whattodo.lenta.ru/',
     },
     {
       title: 'Stoov',
@@ -153,6 +162,9 @@ export const projects = [
         },
       ],
       link: 'https://popsa.lenta.ru/',
+      geoRestricted: true,
+      archiveLink:
+        'http://web.archive.org/web/20251215111338/https://popsa.lenta.ru/',
     },
   ],
   // [
