@@ -49,7 +49,7 @@ const Contact = () => {
         </a>
       </div>
       <footer className="contact__footer">
-        <p className="contact__footer-portfolio">Portfolio 2024</p>
+        <p className="contact__footer-portfolio">Portfolio {new Date().getFullYear()}</p>
         <p className="contact__footer-name">Designed and developed by me 💅🏻</p>
       </footer>
     </div>
