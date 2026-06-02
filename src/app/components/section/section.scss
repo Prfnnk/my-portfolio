@@ -243,6 +243,17 @@
       transform: rotate(360deg);
     }
   }
+
+  &__link {
+    color: var(--color-toffee);
+    text-decoration: underline;
+    font-weight: 600;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
 }
 
 .skills {

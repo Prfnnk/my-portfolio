@@ -1,0 +1,61 @@
+@import 'src/app/assets/css/utils/utils.scss';
+
+.experiments-page {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: var(--color-white);
+  padding: toRem(20);
+  padding-top: toRem(40);
+
+  @media (min-width: 600px) {
+    padding: vw(40);
+    padding-top: vw(60);
+  }
+
+  @media (min-width: 1200px) {
+    padding: vw(60);
+    padding-top: vw(80);
+  }
+}
+
+.experiments-page__header {
+  max-width: 1440px;
+  margin-inline: auto;
+  margin-bottom: toRem(40);
+  text-align: center;
+
+  @media (min-width: 600px) {
+    margin-bottom: vw(40);
+  }
+}
+
+.experiments-page__title {
+  font-size: clamp(40px, 12.5vw, 120px);
+  font-weight: 700;
+  color: var(--color-toffee);
+  margin-bottom: toRem(12);
+  font-family: var(--font-heading);
+  letter-spacing: 0.15em;
+  line-height: 0.7;
+
+  @media (min-width: 600px) {
+    margin-bottom: vw(12);
+  }
+}
+
+.experiments-page__subtitle {
+  font-size: toRem(16);
+  color: var(--color-eclipse);
+  line-height: 1.6;
+  max-width: 600px;
+  margin-inline: auto;
+
+  @media (min-width: 600px) {
+    font-size: clamp(16px, 3vw, 20px);
+  }
+}
+
+.experiments-page__content {
+  max-width: 1440px;
+  margin-inline: auto;
+}
