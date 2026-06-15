@@ -6,18 +6,75 @@
   height: 100vh;
   overflow: hidden;
   background: #87ceeb;
-}
-
-.garden-bed-page__canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
 
   canvas {
-    display: block;
-    width: 100%;
-    height: 100%;
+    pointer-events: none;
+  }
+
+  &__picker {
+    display: flex;
+    gap: toRem(8);
+    // background-color: #f6e5c9;
+    // padding: 0.75rem;
+    // border-radius: 1.2rem;
+    // border: solid 1px #7f5c3e;
+
+    &-button {
+      cursor: pointer;
+      pointer-events: auto;
+      background-color: #f6e5c9;
+      padding: 0.75rem;
+      border-radius: 1.2rem;
+      border: solid 1px #552204;
+      min-width: toRem(100);
+      height: toRem(100);
+      transition: background 0.33s ease;
+
+      &:hover {
+        background: #e4b685;
+      }
+    }
+  }
+
+  &__info {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: toRem(24);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #a67952;
+    padding: 0.8rem;
+    border-radius: 1.2rem;
+    border: solid 1px #552204;
+  }
+
+  &__counter {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: toRem(24);
+    right: toRem(24);
+    background-color: #a67952;
+    padding: 0.4rem;
+    border-radius: 1.2rem;
+    border: solid 1px #552204;
+
+    &-title {
+      font-weight: 500;
+    }
+
+    &-detailed {
+      display: flex;
+    }
+
+    &-wrap {
+      background-color: #f6e5c9;
+      padding: 0.75rem;
+      border-radius: 1.2rem;
+      border: solid 1px #552204;
+    }
   }
 }
 
@@ -29,19 +86,30 @@
   z-index: 10;
   text-align: center;
   pointer-events: none;
+  background-color: #a67952;
+  padding: 0.8rem;
+  border-radius: 1.2rem;
+  border: solid 1px #552204;
+
+  &-wrap {
+    background-color: #f6e5c9;
+    padding: 0.75rem;
+    border-radius: 1.2rem;
+    border: solid 1px #552204;
+  }
 
   @media (min-width: 600px) {
     top: vw(24);
   }
 
   h1 {
-    font-size: clamp(28px, 8vw, 48px);
-    font-weight: 700;
-    color: white;
-    text-shadow: 0 toRem(2) toRem(8) rgba(0, 0, 0, 0.3);
+    font-size: 2.5rem;
+    // font-weight: 700;
+    color: #52280d;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.805);
     margin: 0;
     margin-bottom: toRem(6);
-    font-family: var(--font-heading);
+    font-family: sans-serif;
 
     @media (min-width: 600px) {
       margin-bottom: vw(6);
@@ -50,194 +118,13 @@
 
   p {
     font-size: toRem(12);
-    color: rgba(255, 255, 255, 0.9);
-    text-shadow: 0 toRem(1) toRem(4) rgba(0, 0, 0, 0.2);
+    font-weight: 500;
+    color: #52280d;
+    // text-shadow: 0 toRem(1) toRem(2) rgba(0, 0, 0, 0.805);
     margin: 0;
 
     @media (min-width: 600px) {
       font-size: clamp(12px, 2vw, 16px);
     }
-  }
-}
-
-.garden-bed-page__seed-picker {
-  position: absolute;
-  top: clamp(100px, 20vh, 150px);
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  display: flex;
-  gap: toRem(12);
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(8px);
-  border-radius: toRem(20);
-  padding: toRem(8);
-  box-shadow: 0 toRem(8) toRem(32) rgba(0, 0, 0, 0.15);
-
-  @media (min-width: 600px) {
-    gap: vw(12);
-    border-radius: vw(20);
-    padding: vw(8);
-  }
-}
-
-.garden-bed-page__seed-btn {
-  padding: toRem(10) toRem(16);
-  border: none;
-  border-radius: toRem(12);
-  background: transparent;
-  color: var(--color-eclipse);
-  font-size: toRem(13);
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: toRem(6);
-  transition: all 0.2s ease;
-
-  @media (min-width: 600px) {
-    padding: vw(10) vw(16);
-    border-radius: vw(12);
-    font-size: clamp(13px, 2vw, 15px);
-    gap: vw(6);
-  }
-
-  &:hover {
-    background: rgba(0, 0, 0, 0.05);
-  }
-
-  &--active {
-    background: var(--color-eclipse);
-    color: var(--color-white);
-    box-shadow: 0 toRem(4) toRem(12) rgba(52, 49, 72, 0.3);
-  }
-}
-
-.garden-bed-page__seed-emoji {
-  font-size: toRem(18);
-
-  @media (min-width: 600px) {
-    font-size: clamp(18px, 3vw, 20px);
-  }
-}
-
-.garden-bed-page__seed-label {
-  white-space: nowrap;
-}
-
-.garden-bed-page__basket {
-  position: absolute;
-  bottom: toRem(24);
-  right: toRem(24);
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  gap: toRem(16);
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(8px);
-  border-radius: toRem(20);
-  padding: toRem(16) toRem(20);
-  box-shadow: 0 toRem(8) toRem(32) rgba(0, 0, 0, 0.15);
-
-  @media (min-width: 600px) {
-    bottom: vw(24);
-    right: vw(24);
-    gap: vw(16);
-    border-radius: vw(20);
-    padding: vw(16) vw(20);
-  }
-}
-
-.garden-bed-page__basket-icon {
-  font-size: clamp(32px, 8vw, 48px);
-  user-select: none;
-  pointer-events: none;
-}
-
-.garden-bed-page__basket-content {
-  line-height: 1.2;
-}
-
-.garden-bed-page__basket-label {
-  font-size: toRem(11);
-  text-transform: uppercase;
-  letter-spacing: toRem(0.5);
-  color: var(--color-toffee-shadow);
-  font-weight: 600;
-
-  @media (min-width: 600px) {
-    font-size: clamp(11px, 1.5vw, 12px);
-  }
-}
-
-.garden-bed-page__basket-total {
-  font-size: clamp(28px, 7vw, 40px);
-  font-weight: 700;
-  color: var(--color-eclipse);
-  font-family: 'Courier New', monospace;
-}
-
-.garden-bed-page__basket-items {
-  display: flex;
-  gap: toRem(16);
-  margin-top: toRem(12);
-
-  @media (min-width: 600px) {
-    gap: vw(16);
-    margin-top: vw(12);
-  }
-}
-
-.garden-bed-page__basket-item {
-  display: flex;
-  align-items: center;
-  gap: toRem(6);
-  font-size: toRem(13);
-  font-weight: 600;
-  color: var(--color-eclipse);
-  font-family: 'Courier New', monospace;
-
-  @media (min-width: 600px) {
-    gap: vw(6);
-    font-size: clamp(13px, 2vw, 15px);
-  }
-
-  span:first-child {
-    font-size: toRem(18);
-
-    @media (min-width: 600px) {
-      font-size: clamp(18px, 3vw, 20px);
-    }
-  }
-}
-
-.garden-bed-page__back-link {
-  position: absolute;
-  top: toRem(16);
-  left: toRem(16);
-  z-index: 10;
-  display: inline-block;
-  color: white;
-  font-weight: 600;
-  font-size: toRem(14);
-  text-shadow: 0 toRem(2) toRem(4) rgba(0, 0, 0, 0.3);
-  text-decoration: none;
-  transition: opacity 0.3s ease;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(4px);
-  padding: toRem(8) toRem(12);
-  border-radius: toRem(6);
-
-  @media (min-width: 600px) {
-    top: vw(16);
-    left: vw(16);
-    font-size: clamp(14px, 2vw, 16px);
-    padding: vw(8) vw(12);
-    border-radius: vw(6);
-  }
-
-  &:hover {
-    opacity: 0.8;
-    background: rgba(255, 255, 255, 0.2);
   }
 }

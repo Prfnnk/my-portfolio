@@ -1,143 +1,110 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
+import { Canvas } from '@react-three/fiber';
 import { experiments } from '@/app/data/experiments';
 import './garden-bed-page.scss';
-
-const PLANTS = {
-  radish: { label: 'Radish', emoji: '🌶️' },
-  carrot: { label: 'Carrot', emoji: '🥕' },
-  beet: { label: 'Beet', emoji: '🫐' },
-};
+import GardenBed from './scenes/GardenBed.jsx';
 
 export default function GardenBedPage() {
-  const experiment = experiments.find((exp) => exp.id === 'garden-bed');
-  const canvasRef = useRef(null);
-  const sceneRef = useRef(null);
-  const [selected, setSelected] = useState('radish');
-  const [counts, setCounts] = useState({ radish: 0, carrot: 0, beet: 0 });
-  const basketRef = useRef(null);
-
-  useEffect(() => {
-    if (!canvasRef.current) return;
-
-    // Dynamically import the scene
-    const loadScene = async () => {
-      try {
-        const sceneModule = await import('./scenes/GardenBed');
-        const initScene = sceneModule.default;
-
-        const sceneInstance = initScene(canvasRef.current, {
-          onHarvest: (type) => {
-            setCounts((c) => ({ ...c, [type]: c[type] + 1 }));
-          },
-        });
-
-        sceneRef.current = sceneInstance;
-
-        // Update basket position
-        const updateBasketPos = () => {
-          if (basketRef.current && sceneInstance.setBasketPosition) {
-            const rect = basketRef.current.getBoundingClientRect();
-            sceneInstance.setBasketPosition(
-              rect.left + rect.width / 2,
-              rect.top + rect.height / 2
-            );
-          }
-        };
-
-        updateBasketPos();
-        window.addEventListener('resize', updateBasketPos);
-        const interval = setInterval(updateBasketPos, 500);
-
-        return () => {
-          clearInterval(interval);
-          window.removeEventListener('resize', updateBasketPos);
-          if (sceneInstance.dispose) sceneInstance.dispose();
-        };
-      } catch (error) {
-        console.error('Failed to load GardenBed scene:', error);
-      }
-    };
-
-    const cleanup = loadScene();
-
-    return () => {
-      cleanup?.then((fn) => fn?.());
-    };
-  }, []);
-
-  // Update selected plant in scene
-  useEffect(() => {
-    if (sceneRef.current?.setSelectedPlant) {
-      sceneRef.current.setSelectedPlant(selected);
-    }
-  }, [selected]);
-
-  if (!experiment) {
-    return (
-      <div className="experiment-detail__error">
-        <h1>Experiment not found</h1>
-        <Link href="/experiments" className="experiment-detail__back-link">
-          ← Back to Experiments
-        </Link>
-      </div>
-    );
-  }
-
-  const total = counts.radish + counts.carrot + counts.beet;
-  const plantKeys = ['radish', 'carrot', 'beet'];
+  const plantOptions = [
+    {
+      id: 'carrot',
+      name: 'Carrot',
+      color: 'orange',
+    },
+    {
+      id: 'radish',
+      name: 'Radish',
+      color: 'red',
+    },
+    {
+      id: 'beet',
+      name: 'Beet',
+      color: 'purple',
+    },
+  ];
+  const [action, setAction] = useState('plant'); // 'plant', 'water', 'harvest'
+  const [selectedPlant, setSelectedPlant] = useState(plantOptions[0]);
+  const [harvestedCounts, setHarvestedCounts] = useState({
+    carrot: 0,
+    radish: 0,
+    beet: 0,
+  });
 
   return (
     <div className="garden-bed-page">
-      {/* Canvas */}
-      <canvas ref={canvasRef} className="garden-bed-page__canvas" />
-
-      {/* Title */}
-      <div className="garden-bed-page__title">
-        <h1>Veggie Garden</h1>
-        <p>Pick a seed • Click a hole to sow • Wait 5s • Click to harvest</p>
+      <Canvas shadows camera={{ position: [0, 6.5, 6.5], fov: 75 }}>
+        <directionalLight position={[10, 10, 5]} intensity={3.5} />
+        {/* <ambientLight intensity={2.5} /> */}
+        <directionalLight
+          position={[5, 8, 5]}
+          intensity={2.5}
+          castShadow
+          shadow-mapSize-width={1024}
+          shadow-mapSize-height={1024}
+        />
+        <GardenBed
+          selectedPlant={selectedPlant}
+          action={action}
+          setHarvestedCounts={setHarvestedCounts}
+        />
+        <axesHelper args={[5]} />
+      </Canvas>
+      <div className="interface garden-bed-page__title">
+        <div className="garden-bed-page__title-wrap">
+          <h1>Garden Bed</h1>
+          <p>Welcome to the Garden Bed!</p>
+        </div>
       </div>
 
-      {/* Seed picker */}
-      <div className="garden-bed-page__seed-picker">
-        {plantKeys.map((k) => {
-          const cfg = PLANTS[k];
-          const active = selected === k;
-          return (
-            <button
-              key={k}
-              onClick={() => setSelected(k)}
-              className={`garden-bed-page__seed-btn ${active ? 'garden-bed-page__seed-btn--active' : ''}`}
-            >
-              <span className="garden-bed-page__seed-emoji">{cfg.emoji}</span>
-              <span className="garden-bed-page__seed-label">{cfg.label}</span>
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Basket / counter */}
-      <div ref={basketRef} className="garden-bed-page__basket">
-        <div className="garden-bed-page__basket-icon">🧺</div>
-        <div className="garden-bed-page__basket-content">
-          <div className="garden-bed-page__basket-label">Harvested</div>
-          <div className="garden-bed-page__basket-total">{total}</div>
-          <div className="garden-bed-page__basket-items">
-            {plantKeys.map((k) => (
-              <div key={k} className="garden-bed-page__basket-item">
-                <span>{PLANTS[k].emoji}</span>
-                <span>{counts[k]}</span>
-              </div>
+      <div className="garden-bed-page__counter">
+        <div className="garden-bed-page__counter-wrap">
+          <p className="garden-bed-page__counter-title">
+            Harvested:{' '}
+            {Object.values(harvestedCounts).reduce((a, b) => a + b, 0)}
+          </p>
+          <div className="garden-bed-page__counter-detailed">
+            {plantOptions.map((plant) => (
+              <p key={plant.id}>
+                {plant.name}: {harvestedCounts[plant.id]}
+              </p>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Back button */}
-      <Link href="/experiments" className="garden-bed-page__back-link">
-        ← Back
-      </Link>
+      {/* <p>Current Action: {action}</p>
+      <p>Selected Plant: {selectedPlant.name}</p> */}
+
+      <div className="garden-bed-page__info">
+        <div className="garden-bed-page__picker">
+          {plantOptions.map((plant) => (
+            <button
+              className="garden-bed-page__picker-button"
+              key={plant.id}
+              onClick={() => setAction('plant') || setSelectedPlant(plant)}
+            >
+              {plant.name}
+            </button>
+          ))}
+          <button
+            className="garden-bed-page__picker-button"
+            onClick={() => {
+              setAction('water');
+            }}
+          >
+            Water
+          </button>
+          <button
+            className="garden-bed-page__picker-button"
+            onClick={() => {
+              setAction('harvest');
+            }}
+          >
+            Harvest
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
