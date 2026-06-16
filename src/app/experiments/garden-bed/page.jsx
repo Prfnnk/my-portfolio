@@ -34,6 +34,9 @@ export default function GardenBedPage() {
       image: beet,
     },
   ];
+
+  const basketRef = useRef();
+  const [basketPosition, setBasketPosition] = useState({ x: 0, y: 0 });
   const [action, setAction] = useState('plant'); // 'plant', 'water', 'harvest'
   const [selectedPlant, setSelectedPlant] = useState(plantOptions[0]);
   const [harvestedCounts, setHarvestedCounts] = useState({
@@ -41,6 +44,12 @@ export default function GardenBedPage() {
     radish: 0,
     beet: 0,
   });
+
+  useEffect(() => {
+    if (basketRef.current) {
+      setBasketPosition(basketRef.current.getBoundingClientRect());
+    }
+  }, []);
 
   return (
     <div className="garden-bed-page">
@@ -58,6 +67,7 @@ export default function GardenBedPage() {
           selectedPlant={selectedPlant}
           action={action}
           setHarvestedCounts={setHarvestedCounts}
+          basketPosition={basketPosition}
         />
         <axesHelper args={[5]} />
       </Canvas>
@@ -68,7 +78,7 @@ export default function GardenBedPage() {
         </div>
       </div>
 
-      <div className="garden-bed-page__counter frame-outer">
+      <div ref={basketRef} className="garden-bed-page__counter frame-outer">
         <Image
           className="garden-bed-page__counter-img"
           src={harvestBasket}

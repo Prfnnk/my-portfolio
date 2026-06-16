@@ -8,6 +8,7 @@ export default function GardenBed({
   selectedPlant,
   action,
   setHarvestedCounts,
+  basketPosition,
 }) {
   const cubeRef = useRef();
   const groupRef = useRef();
@@ -75,6 +76,7 @@ export default function GardenBed({
               selectedPlant={selectedPlant}
               action={action}
               setHarvestedCounts={setHarvestedCounts}
+              basketPosition={basketPosition}
             />
           ))
         )}

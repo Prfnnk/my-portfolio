@@ -1,4 +1,4 @@
-export default function Plant({ type, color }) {
+export default function Plant({ type, plantRef }) {
   const renderPlant = (type) => {
     switch (type) {
       case 'carrot':
@@ -162,5 +162,9 @@ export default function Plant({ type, color }) {
         return null;
     }
   };
-  return <>{renderPlant(type)}</>;
+  return (
+    <group scale={0.25} ref={plantRef}>
+      {renderPlant(type)}
+    </group>
+  );
 }
