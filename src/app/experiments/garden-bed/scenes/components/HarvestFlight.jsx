@@ -1,4 +1,3 @@
-// Выносим в отдельный файл: HarvestFlight.jsx
 import { useRef, useEffect } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';

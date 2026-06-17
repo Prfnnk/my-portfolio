@@ -1,4 +1,3 @@
-import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
 import { useCursor } from '@react-three/drei';
 import { useRef, useState } from 'react';
@@ -23,7 +22,6 @@ export default function Cell({
   useCursor(hovered);
 
   const [waterSplashes, setWaterSplashes] = useState([]);
-  const [isHarvested, setIsHarvested] = useState(false);
   const [activeFlight, setActiveFlight] = useState(null);
 
   const [cellData, setCellData] = useState({
