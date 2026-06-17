@@ -1,9 +1,30 @@
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import meOriginal from '@/app/assets/images/me_original.jpeg';
+import Link from 'next/link';
 
 const About = () => {
+  const getExperienceText = () => {
+    const startDate = new Date(2020, 5, 1); // June 1, 2020
+    const currentDate = new Date();
+
+    // Calculate total months since start
+    const totalMonths =
+      (currentDate.getFullYear() - startDate.getFullYear()) * 12 +
+      (currentDate.getMonth() - startDate.getMonth());
+
+    const completeYears = Math.floor(totalMonths / 12);
+    const monthsAfterAnniversary = totalMonths % 12;
+
+    // Less than 6 months after anniversary: "over N years"
+    // 6 or more months after anniversary: "almost N+1 years"
+    if (monthsAfterAnniversary < 6) {
+      return `over ${completeYears} years`;
+    } else {
+      return `almost ${completeYears + 1} years`;
+    }
+  };
+
   return (
     <div className="about">
       <h2 className="about__title section__subtitle">About</h2>
@@ -16,7 +37,7 @@ const About = () => {
           <p>Hello and welcome to my portfolio!</p>
           <p>
             My name is <strong>Maria</strong>, I&lsquo;m a frontend developer
-            with <strong>over 4 years</strong> of experience.
+            with <strong>{getExperienceText()}</strong> of experience.
           </p>
           <p>
             Originally from Moscow, I&nbsp;now call the vibrant city of&nbsp;
@@ -33,7 +54,7 @@ const About = () => {
             <strong>Blender, Three.js and React Fiber</strong> to bring
             immersive experiences to the web.{' '}
             <Link href="/experiments" className="about__link">
-              Check it out here!
+              Check out my journey here!
             </Link>
           </p>
         </div>

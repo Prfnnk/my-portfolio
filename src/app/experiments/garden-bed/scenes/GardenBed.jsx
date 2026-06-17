@@ -62,7 +62,7 @@ export default function GardenBed({
       </group>
 
       {/* Ground Plane */}
-      <mesh position-y={-1} rotation-x={-Math.PI / 2} scale={30} receiveShadow>
+      <mesh position-y={-1} rotation-x={-Math.PI / 2} scale={40} receiveShadow>
         <planeGeometry />
         <meshToonMaterial color="#a2c15b" side={THREE.DoubleSide} />
       </mesh>

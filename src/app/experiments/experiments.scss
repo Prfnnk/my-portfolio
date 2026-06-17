@@ -1,8 +1,7 @@
 @import 'src/app/assets/css/utils/utils.scss';
 
 .experiments-page {
-  width: 100vw;
-  min-height: 100vh;
+  width: 100%;
   background-color: var(--color-white);
   padding: toRem(20);
   padding-top: toRem(40);
@@ -30,13 +29,13 @@
 }
 
 .experiments-page__title {
-  font-size: clamp(40px, 12.5vw, 120px);
+  font-size: clamp(40px, 12vw, 100px);
   font-weight: 700;
   color: var(--color-toffee);
   margin-bottom: toRem(12);
   font-family: var(--font-heading);
-  letter-spacing: 0.15em;
-  line-height: 0.7;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
 
   @media (min-width: 600px) {
     margin-bottom: vw(12);

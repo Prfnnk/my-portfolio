@@ -52,7 +52,7 @@ export default function GardenBedPage() {
 
   return (
     <div className="garden-bed-page">
-      <Canvas shadows camera={{ position: [0, 6.5, 8], fov: 75 }}>
+      <Canvas shadows camera={{ position: [0, 13, 10], fov: 45 }}>
         <directionalLight position={[10, 10, 5]} intensity={3.5} />
         {/* <ambientLight intensity={2.5} /> */}
         <directionalLight
