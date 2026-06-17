@@ -2,7 +2,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { Canvas } from '@react-three/fiber';
-import { experiments } from '@/app/data/experiments';
 import './garden-bed-page.scss';
 import GardenBed from './scenes/GardenBed.jsx';
 
@@ -69,12 +68,15 @@ export default function GardenBedPage() {
           setHarvestedCounts={setHarvestedCounts}
           basketPosition={basketPosition}
         />
-        <axesHelper args={[5]} />
+        {/* <axesHelper args={[5]} /> */}
       </Canvas>
       <div className="interface garden-bed-page__title frame-outer">
         <div className="garden-bed-page__title-wrap frame-inner">
           <h1>Garden Bed</h1>
-          <p>Welcome to the Garden Bed!</p>
+          <p>
+            Welcome to the Garden Bed! <br /> Plant, water, and harvest your
+            crops.
+          </p>
         </div>
       </div>
 
@@ -105,9 +107,6 @@ export default function GardenBedPage() {
           </div>
         </div>
       </div>
-
-      {/* <p>Current Action: {action}</p>
-      <p>Selected Plant: {selectedPlant.name}</p> */}
 
       <div className="garden-bed-page__info frame-outer">
         <div className="garden-bed-page__picker">

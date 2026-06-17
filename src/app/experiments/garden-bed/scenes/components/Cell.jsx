@@ -1,9 +1,10 @@
 import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
 import { useCursor } from '@react-three/drei';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import Plant from './Plant.jsx';
 import WaterSplash from './WaterSplash.jsx';
+import HarvestFlight from './HarvestFlight.jsx';
 
 export default function Cell({
   row,
@@ -15,7 +16,6 @@ export default function Cell({
 }) {
   const positionX = col * 2 - 2;
   const positionZ = row * 2 - 2;
-  const circleRef = useRef();
   const seedRef = useRef();
   const plantRef = useRef();
 
@@ -24,6 +24,7 @@ export default function Cell({
 
   const [waterSplashes, setWaterSplashes] = useState([]);
   const [isHarvested, setIsHarvested] = useState(false);
+  const [activeFlight, setActiveFlight] = useState(null);
 
   const [cellData, setCellData] = useState({
     state: 'empty', // 'empty', 'planted', 'growing', 'ready'
@@ -32,7 +33,6 @@ export default function Cell({
   });
 
   useFrame((state, delta) => {
-    // const a = clock.elapsedTime;
     if (cellData.state === 'planted' && seedRef.current) {
       // Accelerates as it falls
       seedRef.current.position.y -= 5 * delta * 1.5;
@@ -53,35 +53,6 @@ export default function Cell({
         setCellData((prev) => ({ ...prev, state: 'ready' }));
       }
     }
-
-    if (isHarvested && plantRef.current && basketPosition) {
-      // After animation
-      setCellData((prev) => ({ ...prev, state: 'empty' }));
-      setIsHarvested(false);
-      // Rotate the plant
-      // plantRef.current.rotation.x += delta * 3;
-      // plantRef.current.rotation.y += delta * 2;
-      // plantRef.current.rotation.z += delta * 1.5;
-
-      // // Convert basketPosition to local coordinates relative to this cell
-      // const targetPos = new THREE.Vector3(
-      //   basketPosition[0] - positionX,
-      //   basketPosition[1] + 0.14,
-      //   basketPosition[2] - positionZ
-      // );
-
-      // // Move towards basket position
-      // plantRef.current.position.lerp(targetPos, delta * 0.8);
-
-      // // Stop animation when close enough
-      // const distance = plantRef.current.position.distanceTo(targetPos);
-      // if (distance < 0.2) {
-      //   setIsHarvested(false);
-      //   setCellData((prev) => ({ ...prev, state: 'empty' }));
-      // }
-    }
-
-    // if (cellData.state === 'ready' && action === 'harvest') {}
   });
 
   const handleClick = (event) => {
@@ -109,12 +80,15 @@ export default function Cell({
 
       setCellData((prev) => ({ ...prev, state: 'growing' }));
     } else if (action === 'harvest' && cellData.state === 'ready') {
-      // setCellData((prev) => ({ ...prev, state: 'empty' }));
       setHarvestedCounts((prev) => ({
         ...prev,
         [cellData.plantType]: prev[cellData.plantType] + 1,
       }));
-      setIsHarvested(true);
+
+      // Trigger flying animation
+      setActiveFlight(cellData.plantType);
+      // Reset the cell
+      setCellData({ state: 'empty', plantType: null, seedColor: 'green' });
     }
   };
 
@@ -124,10 +98,9 @@ export default function Cell({
         position={[0, 0.01, 0]}
         scale={0.4}
         rotation-x={-Math.PI / 2}
-        ref={circleRef}
         receiveShadow
       >
-        <circleGeometry args={[]} />
+        <circleGeometry />
         <meshToonMaterial color="#3c311d" />
       </mesh>
       <mesh
@@ -139,7 +112,7 @@ export default function Cell({
         onClick={handleClick}
         receiveShadow
       >
-        <planeGeometry args={[]} />
+        <planeGeometry />
         <meshToonMaterial
           color={
             cellData.state === 'growing' || cellData.state === 'ready'
@@ -152,7 +125,7 @@ export default function Cell({
       {/* Seed */}
       {cellData.state === 'planted' && (
         <mesh ref={seedRef} position={[0, 2, 0]} scale={0.1} castShadow>
-          <sphereGeometry args={[]} />
+          <sphereGeometry />
           <meshToonMaterial color={cellData.seedColor} />
         </mesh>
       )}
@@ -160,6 +133,16 @@ export default function Cell({
       {/* Plant */}
       {(cellData.state === 'growing' || cellData.state === 'ready') && (
         <Plant type={cellData.plantType} plantRef={plantRef} />
+      )}
+
+      {activeFlight && (
+        <HarvestFlight
+          type={activeFlight}
+          basketPosition={basketPosition}
+          startWorldPos={[0, 0, 0]}
+          onComplete={() => setActiveFlight(null)}
+          plantRef={plantRef}
+        />
       )}
 
       {/* Water Splashes */}

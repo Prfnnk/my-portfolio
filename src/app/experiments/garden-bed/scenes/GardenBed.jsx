@@ -1,8 +1,19 @@
 import { useFrame } from '@react-three/fiber';
-import { useEffect, useRef, useState } from 'react';
-import { OrbitControls } from '@react-three/drei';
+// import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 import Cell from './components/Cell.jsx';
+
+// Garden bed frame elements config
+const FRAME_ELEMENTS = [
+  { pos: [-3, 0, -3], size: [0.7, 2, 0.7], shadow: true, color: '#a16740' },
+  { pos: [-3, -0.5, 0], size: [0.2, 1, 8], shadow: true, color: '#5e3930' },
+  { pos: [-3, 0, 3], size: [0.7, 2, 0.7], shadow: true, color: '#a16740' },
+  { pos: [0, -0.5, 3], size: [8, 1, 0.2], shadow: true, color: '#5e3930' },
+  { pos: [3, 0, 3], size: [0.7, 2, 0.7], shadow: true, color: '#a16740' },
+  { pos: [3, -0.5, 0], size: [0.2, 1, 8], shadow: true, color: '#5e3930' },
+  { pos: [3, 0, -3], size: [0.7, 2, 0.7], shadow: true, color: '#a16740' },
+  { pos: [0, -0.5, -3], size: [8, 1, 0.2], shadow: true, color: '#5e3930' },
+];
 
 export default function GardenBed({
   selectedPlant,
@@ -10,59 +21,27 @@ export default function GardenBed({
   setHarvestedCounts,
   basketPosition,
 }) {
-  const cubeRef = useRef();
-  const groupRef = useRef();
-
-  // useFrame((state, delta) => {
-  //   cubeRef.current.rotation.y += delta;
-  //   // groupRef.current.rotation.y += delta;
-  // });
-
   return (
     <>
-      <OrbitControls />
-      {/* <directionalLight position={[10, 10, 5]} intensity={4.5} />
-      <ambientLight intensity={1.5} /> */}
+      {/* <OrbitControls /> */}
 
       {/* Bed Frame and soil */}
-      <group ref={groupRef}>
-        <mesh position={[-3, 0, -3]} scale={[0.7, 2, 0.7]} castShadow>
-          <boxGeometry args={[]} />
-          <meshToonMaterial color="#a16740" />
-        </mesh>
-        <mesh position={[-3, -0.5, 0]} scale={[0.2, 1, 8]} castShadow>
-          <boxGeometry args={[]} />
-          <meshToonMaterial color="#5e3930" />
-        </mesh>
-        <mesh position={[-3, 0, 3]} scale={[0.7, 2, 0.7]} castShadow>
-          <boxGeometry args={[]} />
-          <meshToonMaterial color="#a16740" />
-        </mesh>
-        <mesh position={[0, -0.5, 3]} scale={[8, 1, 0.2]} castShadow>
-          <boxGeometry args={[]} />
-          <meshToonMaterial color="#5e3930" />
-        </mesh>
-
-        <mesh position={[3, 0, 3]} scale={[0.7, 2, 0.7]} castShadow>
-          <boxGeometry args={[]} />
-          <meshToonMaterial color="#a16740" />
-        </mesh>
-        <mesh position={[3, -0.5, 0]} scale={[0.2, 1, 8]} castShadow>
-          <boxGeometry args={[]} />
-          <meshToonMaterial color="#5e3930" />
-        </mesh>
-        <mesh position={[3, 0, -3]} scale={[0.7, 2, 0.7]} castShadow>
-          <boxGeometry args={[]} />
-          <meshToonMaterial color="#a16740" />
-        </mesh>
-        <mesh position={[0, -0.5, -3]} scale={[8, 1, 0.2]} castShadow>
-          <boxGeometry args={[]} />
-          <meshToonMaterial color="#5e3930" />
-        </mesh>
+      <group>
+        {FRAME_ELEMENTS.map((el, idx) => (
+          <mesh
+            key={idx}
+            position={el.pos}
+            scale={el.size}
+            castShadow={el.shadow}
+          >
+            <boxGeometry />
+            <meshToonMaterial color={el.color} />
+          </mesh>
+        ))}
 
         {/* Soil */}
         <mesh position={[0, -0.5, 0]} scale={[6, 0.7, 6]}>
-          <boxGeometry args={[]} />
+          <boxGeometry />
           <meshToonMaterial color="#ca945b" />
         </mesh>
 
@@ -84,7 +63,7 @@ export default function GardenBed({
 
       {/* Ground Plane */}
       <mesh position-y={-1} rotation-x={-Math.PI / 2} scale={30} receiveShadow>
-        <planeGeometry args={[]} />
+        <planeGeometry />
         <meshToonMaterial color="#a2c15b" side={THREE.DoubleSide} />
       </mesh>
     </>
