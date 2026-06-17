@@ -1,0 +1,212 @@
+@import 'src/app/assets/css/utils/utils.scss';
+
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.frame-outer {
+  background-color: #a67952;
+  padding: 0.8rem;
+  border-radius: 1rem;
+  border: solid 1px #552204;
+}
+
+.frame-inner {
+  background-color: #f6e5c9;
+  padding: 0.75rem;
+  border-radius: 1rem;
+  border: solid 1px #552204;
+}
+
+.garden-bed-page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #87ceeb;
+
+  canvas {
+    pointer-events: none;
+  }
+
+  &__picker {
+    display: flex;
+    gap: toRem(8);
+
+    &-wrap {
+      border-radius: 1.2rem;
+      box-shadow: 0px 2px 3px 4px #fffbbe00;
+      transition: box-shadow 0.33s ease;
+      flex: 1;
+
+      &.active {
+        box-shadow: 0px 2px 3px 4px #fffbbe;
+
+        .garden-bed-page__picker-button {
+          background: #e4b484;
+        }
+      }
+    }
+
+    &-button {
+      cursor: pointer;
+      pointer-events: auto;
+      background-color: #f6e5c9;
+      // padding: 0.75rem;
+      border-radius: 1.2rem;
+      border: solid 1px #552204;
+      max-width: toRem(100);
+      max-height: toRem(100);
+      transition: background 0.33s ease;
+      width: 100%;
+      height: 100%;
+
+      &:hover {
+        background: #e4b484;
+      }
+    }
+
+    &-img {
+      width: 60%;
+
+      &--can {
+        width: 85%;
+      }
+      &--harvest {
+        width: 55%;
+      }
+    }
+
+    &-inner {
+      width: 100%;
+      display: block;
+      height: 100%;
+      padding: 0.25rem;
+      border-radius: 1.2rem;
+      border-bottom: 8px solid #c48c68;
+      box-shadow: 0px 4px 3px 4px #9a5f44;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4px;
+    }
+  }
+
+  &__info {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: toRem(24);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: 600px) {
+      width: 95%;
+    }
+  }
+
+  &__counter {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: toRem(106);
+    right: toRem(24);
+    padding: 0.25rem;
+    width: toRem(200);
+
+    @media (max-width: 768px) {
+      width: toRem(174);
+      right: toRem(10);
+    }
+
+    &-img {
+      position: absolute;
+      top: toRem(-94);
+      left: 50%;
+      transform: translateX(-50%);
+      object-fit: contain;
+      width: toRem(120);
+      height: auto;
+
+      @media (max-width: 768px) {
+        width: toRem(100);
+        top: toRem(-78);
+      }
+    }
+
+    &-title {
+      font-weight: 600;
+    }
+
+    &-detailed {
+      display: flex;
+      gap: toRem(8);
+      margin-top: toRem(10);
+    }
+
+    &-wrap {
+      text-align: center;
+    }
+  }
+
+  &__plant {
+    position: relative;
+    &-count {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      font-weight: 500;
+      font-size: toRem(14);
+    }
+  }
+}
+
+.garden-bed-page__title {
+  position: absolute;
+  top: toRem(24);
+  left: 1.5rem;
+  z-index: 10;
+  text-align: center;
+  pointer-events: none;
+
+  @media (min-width: 768px) {
+    top: vw(24);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.5rem;
+    left: toRem(10);
+  }
+
+  h1 {
+    font-size: toRem(14);
+    font-weight: 600;
+    color: #52280d;
+    margin: 0;
+    margin-bottom: toRem(6);
+    font-family: sans-serif;
+
+    @media (min-width: 600px) {
+      margin-bottom: vw(6);
+      font-size: 2.5rem;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.805);
+    }
+  }
+
+  p {
+    font-size: toRem(10);
+    font-weight: 500;
+    color: #52280d;
+    margin: 0;
+
+    @media (min-width: 600px) {
+      font-size: clamp(12px, 2vw, 16px);
+    }
+  }
+}
