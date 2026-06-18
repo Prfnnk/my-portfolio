@@ -15,12 +15,7 @@ const FRAME_ELEMENTS = [
   { pos: [0, -0.5, -3], size: [8, 1, 0.2], shadow: true, color: '#5e3930' },
 ];
 
-export default function GardenBed({
-  selectedPlant,
-  action,
-  setHarvestedCounts,
-  basketPosition,
-}) {
+export default function GardenBed({}) {
   return (
     <>
       {/* <OrbitControls /> */}
@@ -48,15 +43,7 @@ export default function GardenBed({
         {/* Cells */}
         {Array.from({ length: 3 }).map((_, row) =>
           Array.from({ length: 3 }).map((_, col) => (
-            <Cell
-              key={`${row}-${col}`}
-              row={row}
-              col={col}
-              selectedPlant={selectedPlant}
-              action={action}
-              setHarvestedCounts={setHarvestedCounts}
-              basketPosition={basketPosition}
-            />
+            <Cell key={`${row}-${col}`} row={row} col={col} />
           ))
         )}
       </group>

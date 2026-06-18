@@ -4,19 +4,15 @@ import { useRef, useState } from 'react';
 import Plant from './Plant.jsx';
 import WaterSplash from './WaterSplash.jsx';
 import HarvestFlight from './HarvestFlight.jsx';
+import { useInterface } from '../../store/useInterface.js';
 
-export default function Cell({
-  row,
-  col,
-  selectedPlant,
-  action,
-  setHarvestedCounts,
-  basketPosition,
-}) {
+export default function Cell({ row, col }) {
   const positionX = col * 2 - 2;
   const positionZ = row * 2 - 2;
   const seedRef = useRef();
   const plantRef = useRef();
+  const { selectedPlant, action, basketPosition, incrementHarvest } =
+    useInterface();
 
   const [hovered, set] = useState();
   useCursor(hovered);
@@ -78,10 +74,7 @@ export default function Cell({
 
       setCellData((prev) => ({ ...prev, state: 'growing' }));
     } else if (action === 'harvest' && cellData.state === 'ready') {
-      setHarvestedCounts((prev) => ({
-        ...prev,
-        [cellData.plantType]: prev[cellData.plantType] + 1,
-      }));
+      incrementHarvest(cellData.plantType);
 
       // Trigger flying animation
       setActiveFlight(cellData.plantType);
@@ -136,10 +129,10 @@ export default function Cell({
       {activeFlight && (
         <HarvestFlight
           type={activeFlight}
-          basketPosition={basketPosition}
           startWorldPos={[0, 0, 0]}
           onComplete={() => setActiveFlight(null)}
           plantRef={plantRef}
+          basketPosition={basketPosition}
         />
       )}
 
