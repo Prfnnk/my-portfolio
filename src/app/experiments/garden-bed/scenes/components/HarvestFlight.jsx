@@ -6,9 +6,9 @@ import Plant from './Plant.jsx';
 export default function HarvestFlight({
   type,
   startWorldPos,
-  basketPosition,
   onComplete,
   plantRef,
+  basketPosition,
 }) {
   const { camera, size } = useThree();
   const flightRef = useRef();
