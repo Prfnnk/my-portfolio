@@ -1,0 +1,131 @@
+@import 'src/app/assets/css/utils/utils.scss';
+
+.lumos-scene-page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: rgb(96, 96, 96);
+
+  canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* Click-to-start overlay prompt */
+.lumos-scene-page__prompt {
+  position: absolute;
+  bottom: toRem(80);
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: toRem(14);
+  font-family: sans-serif;
+  letter-spacing: 0.15em;
+  pointer-events: none;
+  text-align: center;
+  animation: pulse-fade 3s ease-in-out infinite;
+}
+
+@keyframes pulse-fade {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Lumos / Nox UI — rendered as HTML overlay outside Canvas */
+.lumos-ui {
+  position: absolute;
+  bottom: toRem(32);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: toRem(20);
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.lumos-ui__btn {
+  padding: toRem(12) toRem(28);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: toRem(8);
+  font-family: sans-serif;
+  font-size: toRem(18);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.15s ease,
+    border-color 0.3s ease;
+  background: rgba(0, 0, 0, 0.6);
+  color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &--lumos {
+    border-color: rgba(255, 200, 50, 0.3);
+    color: rgba(255, 200, 50, 0.8);
+
+    &:hover {
+      background: rgba(255, 200, 50, 0.12);
+      border-color: rgba(255, 200, 50, 0.5);
+    }
+
+    &.lumos-ui__btn--active {
+      background: rgba(255, 200, 50, 0.18);
+      border-color: #ffcc33;
+      color: #ffcc33;
+      box-shadow:
+        0 0 20px rgba(255, 200, 50, 0.3),
+        0 0 40px rgba(255, 200, 50, 0.1);
+      animation: glow-pulse 2s ease-in-out infinite;
+    }
+  }
+
+  &--nox {
+    border-color: rgba(100, 100, 140, 0.3);
+    color: rgba(180, 180, 200, 0.7);
+
+    &:hover {
+      background: rgba(100, 100, 140, 0.12);
+      border-color: rgba(100, 100, 140, 0.5);
+    }
+
+    &.lumos-ui__btn--active {
+      background: rgba(80, 80, 120, 0.2);
+      border-color: rgba(120, 120, 180, 0.4);
+      color: rgba(200, 200, 220, 0.9);
+    }
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 20px rgba(255, 200, 50, 0.3),
+      0 0 40px rgba(255, 200, 50, 0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 30px rgba(255, 200, 50, 0.5),
+      0 0 60px rgba(255, 200, 50, 0.2);
+  }
+}

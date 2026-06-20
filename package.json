@@ -10,9 +10,11 @@
   },
   "dependencies": {
     "@react-spring/three": "^10.1.1",
-    "@react-three/drei": "9.32",
+    "@react-three/drei": "^9.122.0",
     "@react-three/fiber": "^8.18.0",
+    "@react-three/postprocessing": "^2.19.1",
     "next": "^14.2.4",
+    "r3f-perf": "^7.2.3",
     "react": "^18",
     "react-dom": "^18",
     "react-slick": "^0.30.2",
