@@ -1,0 +1,18 @@
+@import 'src/app/assets/css/utils/utils.scss';
+
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.portal-page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  canvas {
+    pointer-events: none;
+  }
+}

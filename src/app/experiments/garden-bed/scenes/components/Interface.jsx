@@ -1,13 +1,13 @@
 import Image from 'next/image';
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useInterface } from '../../store/useInterface.js';
 
-import harvestBasket from '../../../../assets/images/experiments/garden-bed/basket.png';
-import carrot from '../../../../assets/images/experiments/garden-bed/carrot.png';
-import radish from '../../../../assets/images/experiments/garden-bed/radish.png';
-import beet from '../../../../assets/images/experiments/garden-bed/beet.png';
-import can from '../../../../assets/images/experiments/garden-bed/can.png';
-import harvest from '../../../../assets/images/experiments/garden-bed/harvest.png';
+import harvestBasket from '../../assets/images/basket.png';
+import carrot from '../../assets/images/carrot.png';
+import radish from '../../assets/images/radish.png';
+import beet from '../../assets/images/beet.png';
+import can from '../../assets/images/can.png';
+import harvest from '../../assets/images/harvest.png';
 
 const Interface = () => {
   const {
