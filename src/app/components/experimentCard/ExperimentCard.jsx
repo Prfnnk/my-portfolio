@@ -8,7 +8,10 @@ const ExperimentCard = ({ experiment }) => {
   const hiddenTagCount = Math.max(0, experiment.tags.length - 3);
 
   return (
-    <Link href={`/experiments/${experiment.id}`}>
+    <Link
+      href={experiment.published ? `/experiments/${experiment.id}` : '#'}
+      className={`experiment-card__link ${!experiment.published ? 'disabled' : ''}`}
+    >
       <div className="experiment-card">
         <div className="experiment-card__image">
           <Image
@@ -18,6 +21,9 @@ const ExperimentCard = ({ experiment }) => {
             sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 25vw"
             className="experiment-card__image-img"
           />
+          {!experiment.published && (
+            <div className="experiment-card__badge">WIP</div>
+          )}
         </div>
         <div className="experiment-card__content">
           <h3 className="experiment-card__title">{experiment.title}</h3>
