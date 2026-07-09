@@ -16,6 +16,22 @@ import shelvesTexture from '../assets/model/baked-shelves.jpg';
 import booksTexture from '../assets/model/baked-bookshelf.jpg';
 import tableTexture from '../assets/model/baked-table-things-2k.jpg';
 
+import crystalBallVertexShader from '../assets/shaders/crystalBall/vertex.glsl';
+import crystalBallFragmentShader from '../assets/shaders/crystalBall/fragment.glsl';
+import perlinNoise from '../assets/shaders/utils/perlinNoise.glsl';
+
+const CrystalBallMaterial = shaderMaterial(
+  {
+    uTime: 0,
+    uColorStart: new THREE.Color('#e1bef4'),
+    uColorEnd: new THREE.Color('#a155ca'),
+  },
+  crystalBallVertexShader,
+  perlinNoise + crystalBallFragmentShader
+);
+
+extend({ CrystalBallMaterial });
+
 const ROOM_ELEMENTS = [
   { id: 'room', nodeName: 'AllRoom', textureKey: 'room' },
   { id: 'shelves', nodeName: 'ShelvesThings', textureKey: 'shelves' },
@@ -44,6 +60,14 @@ export default function WizardRoom() {
       texture.flipY = false;
     });
   }, [textures]);
+
+  const crystalBallMaterial = useRef();
+
+  useFrame((state, delta) => {
+    if (crystalBallMaterial.current) {
+      crystalBallMaterial.current.uTime += delta;
+    }
+  });
 
   return (
     <>
@@ -82,12 +106,18 @@ export default function WizardRoom() {
             </mesh>
           ))}
           {nodes.CrystalBall && (
+            // Recreated the sphere for the right uv coordinates
             <mesh
-              geometry={nodes.CrystalBall.geometry}
-              position={nodes.CrystalBall.position}
+              position={[
+                nodes.CrystalBall.position.x,
+                nodes.CrystalBall.position.y + 0.19,
+                nodes.CrystalBall.position.z,
+              ]}
               rotation={nodes.CrystalBall.rotation}
+              scale={0.17}
             >
-              <meshBasicMaterial color="#8838BAFF" />
+              <sphereGeometry args={[1, 64, 64]} />
+              <crystalBallMaterial ref={crystalBallMaterial} />
             </mesh>
           )}
         </group>
