@@ -33,6 +33,6 @@ export const experiments = [
     tags: ['R3F', 'Blender', 'Shaders'],
     link: null,
     sceneModule: 'WizardRoom',
-    published: false,
+    published: true,
   },
 ];
