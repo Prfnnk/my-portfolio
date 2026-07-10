@@ -5,6 +5,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  transpilePackages: ['three'],
   webpack(config) {
     config.module.rules.push({
       test: /\.(glb|gltf)$/,
