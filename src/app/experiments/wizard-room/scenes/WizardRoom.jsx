@@ -4,12 +4,14 @@ import {
   OrbitControls,
   useTexture,
   Center,
-  Sparkles,
   shaderMaterial,
 } from '@react-three/drei';
 import { useFrame, extend } from '@react-three/fiber';
 import { useRef, useMemo } from 'react';
 import * as THREE from 'three';
+
+import DustParticles from './components/Dust.jsx';
+
 import wizardRoomModel from '../assets/model/wizard-room-full.glb';
 import roomTexture from '../assets/model/baked-big-things.jpg';
 import shelvesTexture from '../assets/model/baked-shelves.jpg';
@@ -18,6 +20,8 @@ import tableTexture from '../assets/model/baked-table-things-2k.jpg';
 
 import crystalBallVertexShader from '../assets/shaders/crystalBall/vertex.glsl';
 import crystalBallFragmentShader from '../assets/shaders/crystalBall/fragment.glsl';
+import moonlightVertexShader from '../assets/shaders/moonlight/vertex.glsl';
+import moonlightFragmentShader from '../assets/shaders/moonlight/fragment.glsl';
 import perlinNoise from '../assets/shaders/utils/perlinNoise.glsl';
 
 const CrystalBallMaterial = shaderMaterial(
@@ -29,8 +33,15 @@ const CrystalBallMaterial = shaderMaterial(
   crystalBallVertexShader,
   perlinNoise + crystalBallFragmentShader
 );
+const MoonlightMaterial = shaderMaterial(
+  {
+    uTime: 0,
+  },
+  moonlightVertexShader,
+  perlinNoise + moonlightFragmentShader
+);
 
-extend({ CrystalBallMaterial });
+extend({ CrystalBallMaterial, MoonlightMaterial });
 
 const ROOM_ELEMENTS = [
   { id: 'room', nodeName: 'AllRoom', textureKey: 'room' },
@@ -62,10 +73,14 @@ export default function WizardRoom() {
   }, [textures]);
 
   const crystalBallMaterial = useRef();
+  const moonlightMaterial = useRef();
 
   useFrame((state, delta) => {
     if (crystalBallMaterial.current) {
       crystalBallMaterial.current.uTime += delta;
+    }
+    if (moonlightMaterial.current) {
+      moonlightMaterial.current.uTime = state.clock.getElapsedTime();
     }
   });
 
@@ -120,6 +135,26 @@ export default function WizardRoom() {
               <crystalBallMaterial ref={crystalBallMaterial} />
             </mesh>
           )}
+
+          {/* Moonlight from the window */}
+          <mesh position={[-1, 1.3, -0.4]} rotation={[0, 0, 0.9]}>
+            <cylinderGeometry args={[0.4, 0.7, 4.0, 32, 1, true]} />
+            {/* <meshBasicMaterial /> */}
+
+            <moonlightMaterial
+              ref={moonlightMaterial}
+              transparent={true}
+              depthWrite={false}
+              blending={THREE.AdditiveBlending}
+            />
+          </mesh>
+
+          {/* Dust */}
+          {/* <DustParticles count={3} /> */}
+          {/* <points>
+            <sphereGeometry args={[1, 48, 48]} />
+            <pointsMaterial color="#5786F5" size={0.015} sizeAttenuation />
+          </points> */}
         </group>
       </Center>
     </>
