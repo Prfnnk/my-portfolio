@@ -5,7 +5,10 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  transpilePackages: ['three'],
+  transpilePackages: ['three', '@react-three/fiber', '@react-three/drei'],
+  experimental: {
+    esmExternals: 'loose',
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.(glb|gltf)$/,
