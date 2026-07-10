@@ -5,7 +5,12 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  transpilePackages: ['three', '@react-three/fiber', '@react-three/drei'],
+  transpilePackages: [
+    'three',
+    '@react-three/fiber',
+    '@react-three/drei',
+    'three-stdlib',
+  ],
   experimental: {
     esmExternals: 'loose',
   },
