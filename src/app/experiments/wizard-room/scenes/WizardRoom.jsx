@@ -96,21 +96,21 @@ export default function WizardRoom() {
       <color args={['#140226']} attach="background" />
       <OrbitControls
         makeDefault
-        target={[-0.01, -0.4, 0.13]}
-        minPolarAngle={1.2}
-        maxPolarAngle={1.45}
-        minAzimuthAngle={-0.9}
-        maxAzimuthAngle={0.8}
+        target={[0.0, -0.73, 0.23]}
+        minPolarAngle={0.6}
+        maxPolarAngle={1.65}
+        minAzimuthAngle={-0.8}
+        maxAzimuthAngle={0.7}
         minDistance={3.5}
-        maxDistance={8}
-        // onEnd={(e) => {
-        //   const { position } = e.target.object;
-        //   const { target } = e.target;
-        //   console.log(
-        //     `Camera settings -> position: [${position.x.toFixed(2)}, ${position.y.toFixed(2)}, ${position.z.toFixed(2)}], target: [${target.x.toFixed(2)}, ${target.y.toFixed(2)}, ${target.z.toFixed(2)}]\n` +
-        //       `Polar angle: ${e.target.getPolarAngle().toFixed(2)} rad, Azimuthal angle: ${e.target.getAzimuthalAngle().toFixed(2)} rad`
-        //   );
-        // }}
+        maxDistance={10}
+        onEnd={(e) => {
+          const { position } = e.target.object;
+          const { target } = e.target;
+          console.log(
+            `Camera settings -> position: [${position.x.toFixed(2)}, ${position.y.toFixed(2)}, ${position.z.toFixed(2)}], target: [${target.x.toFixed(2)}, ${target.y.toFixed(2)}, ${target.z.toFixed(2)}]\n` +
+              `Polar angle: ${e.target.getPolarAngle().toFixed(2)} rad, Azimuthal angle: ${e.target.getAzimuthalAngle().toFixed(2)} rad`
+          );
+        }}
       />
 
       <Center>
