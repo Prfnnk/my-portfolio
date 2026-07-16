@@ -55,7 +55,7 @@ const ROOM_ELEMENTS = [
   { id: 'table', nodeName: 'TableThings', textureKey: 'table' },
 ];
 
-export default function WizardRoom() {
+export default function WizardRoom({ onInteraction }) {
   const { nodes } = useGLTF(wizardRoomModel);
   const candleLightArr = Object.values(nodes).filter((node) =>
     node.name.includes('CandleLight')
@@ -103,14 +103,15 @@ export default function WizardRoom() {
         maxAzimuthAngle={0.7}
         minDistance={3.5}
         maxDistance={10}
-        onEnd={(e) => {
-          const { position } = e.target.object;
-          const { target } = e.target;
-          console.log(
-            `Camera settings -> position: [${position.x.toFixed(2)}, ${position.y.toFixed(2)}, ${position.z.toFixed(2)}], target: [${target.x.toFixed(2)}, ${target.y.toFixed(2)}, ${target.z.toFixed(2)}]\n` +
-              `Polar angle: ${e.target.getPolarAngle().toFixed(2)} rad, Azimuthal angle: ${e.target.getAzimuthalAngle().toFixed(2)} rad`
-          );
-        }}
+        onStart={onInteraction}
+        // onEnd={(e) => {
+        //   const { position } = e.target.object;
+        //   const { target } = e.target;
+        //   console.log(
+        //     `Camera settings -> position: [${position.x.toFixed(2)}, ${position.y.toFixed(2)}, ${position.z.toFixed(2)}], target: [${target.x.toFixed(2)}, ${target.y.toFixed(2)}, ${target.z.toFixed(2)}]\n` +
+        //       `Polar angle: ${e.target.getPolarAngle().toFixed(2)} rad, Azimuthal angle: ${e.target.getAzimuthalAngle().toFixed(2)} rad`
+        //   );
+        // }}
       />
 
       <Center>
