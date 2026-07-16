@@ -11,9 +11,9 @@ void main()
     vec4 modelPosition = modelMatrix * vec4(position, 1.0);
     
     // Add floating movement animation
-    modelPosition.y += sin(uTime * 0.02 + modelPosition.x * 100.0) * aScale * 0.6;
-    modelPosition.x += cos(uTime * 0.01 + modelPosition.z * 100.0) * aScale * 0.5;
-    modelPosition.z += sin(uTime * 0.05 + modelPosition.y * 100.0) * aScale * 0.2;
+    modelPosition.y += sin(uTime * 0.005 + modelPosition.x * 100.0) * aScale * 1.5;
+    modelPosition.x += cos(uTime * 0.003 + modelPosition.z * 100.0) * aScale * 1.2;
+    modelPosition.z += sin(uTime * 0.008 + modelPosition.y * 100.0) * aScale * 1.1;
 
     vec4 viewPosition = viewMatrix * modelPosition;
     vec4 projectionPosition = projectionMatrix * viewPosition;

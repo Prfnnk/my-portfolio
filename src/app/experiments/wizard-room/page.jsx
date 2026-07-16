@@ -8,10 +8,10 @@ export default function WizardRoomPage() {
     <div className="wizard-room-page">
       <Canvas
         flat
-        camera={{ position: [1, 2, 6], fov: 45, near: 0.1, far: 200 }}
+        camera={{ position: [0.11, 2.9, 10.1], fov: 45, near: 0.1, far: 200 }}
       >
         <WizardRoom />
-        <axesHelper args={[5]} />
+        {/* <axesHelper args={[5]} /> */}
       </Canvas>
     </div>
   );

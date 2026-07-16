@@ -1,27 +1,32 @@
 'use client';
 import {
   useGLTF,
-  OrbitControls,
   useTexture,
   Center,
   shaderMaterial,
+  OrbitControls,
 } from '@react-three/drei';
 import { useFrame, extend } from '@react-three/fiber';
 import { useRef, useMemo } from 'react';
 import * as THREE from 'three';
 
+// Components
 import DustParticles from './components/Dust.jsx';
 
+// Model and textures
 import wizardRoomModel from '../assets/model/wizard-room-full.glb';
 import roomTexture from '../assets/model/baked-big-things.jpg';
 import shelvesTexture from '../assets/model/baked-shelves.jpg';
 import booksTexture from '../assets/model/baked-bookshelf.jpg';
 import tableTexture from '../assets/model/baked-table-things-2k.jpg';
 
+// Shaders
 import crystalBallVertexShader from '../assets/shaders/crystalBall/vertex.glsl';
 import crystalBallFragmentShader from '../assets/shaders/crystalBall/fragment.glsl';
+
 import moonlightVertexShader from '../assets/shaders/moonlight/vertex.glsl';
 import moonlightFragmentShader from '../assets/shaders/moonlight/fragment.glsl';
+
 import perlinNoise from '../assets/shaders/utils/perlinNoise.glsl';
 
 const CrystalBallMaterial = shaderMaterial(
@@ -55,6 +60,10 @@ export default function WizardRoom() {
   const candleLightArr = Object.values(nodes).filter((node) =>
     node.name.includes('CandleLight')
   );
+  // Refs
+  const crystalBallMaterial = useRef();
+  const moonlightMaterial = useRef();
+
   console.log(nodes, 'nodes');
 
   // Load textures
@@ -72,9 +81,7 @@ export default function WizardRoom() {
     });
   }, [textures]);
 
-  const crystalBallMaterial = useRef();
-  const moonlightMaterial = useRef();
-
+  // Animation
   useFrame((state, delta) => {
     if (crystalBallMaterial.current) {
       crystalBallMaterial.current.uTime += delta;
@@ -86,11 +93,28 @@ export default function WizardRoom() {
 
   return (
     <>
-      <color args={['#170628']} attach="background" />
-      <OrbitControls />
+      <color args={['#140226']} attach="background" />
+      <OrbitControls
+        makeDefault
+        target={[-0.01, -0.4, 0.13]}
+        minPolarAngle={1.2}
+        maxPolarAngle={1.45}
+        minAzimuthAngle={-0.9}
+        maxAzimuthAngle={0.8}
+        minDistance={3.5}
+        maxDistance={8}
+        // onEnd={(e) => {
+        //   const { position } = e.target.object;
+        //   const { target } = e.target;
+        //   console.log(
+        //     `Camera settings -> position: [${position.x.toFixed(2)}, ${position.y.toFixed(2)}, ${position.z.toFixed(2)}], target: [${target.x.toFixed(2)}, ${target.y.toFixed(2)}, ${target.z.toFixed(2)}]\n` +
+        //       `Polar angle: ${e.target.getPolarAngle().toFixed(2)} rad, Azimuthal angle: ${e.target.getAzimuthalAngle().toFixed(2)} rad`
+        //   );
+        // }}
+      />
 
       <Center>
-        <group>
+        <group rotation-y={-Math.PI * 0.25} scale={1.1}>
           {/* Room elements */}
           {ROOM_ELEMENTS.map(({ id, nodeName, textureKey }) => {
             const targetNode = nodes[nodeName];

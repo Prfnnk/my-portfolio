@@ -7,7 +7,7 @@ import dustVertexShader from '../../assets/shaders/dust/vertex.glsl';
 import dustFragmentShader from '../../assets/shaders/dust/fragment.glsl';
 
 const DustMaterial = shaderMaterial(
-  { uTime: 0, uSize: 60.0, uPixelRatio: 2.0 },
+  { uTime: 0, uSize: 85.0, uPixelRatio: 2.0 },
   dustVertexShader,
   dustFragmentShader
 );
@@ -25,7 +25,7 @@ export default function DustParticles() {
     }
   });
 
-  const count = 60;
+  const count = 70;
 
   const [particlesPosition, particlesScale] = useMemo(() => {
     const positions = new Float32Array(count * 3);
@@ -44,7 +44,7 @@ export default function DustParticles() {
   }, [count]);
 
   return (
-    <points position={[0, 2, 0]} scale={1.8}>
+    <points position={[0, 2.2, 0]} scale={1.6}>
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
