@@ -8,7 +8,7 @@ import './experiments.scss';
 export default function ExperimentsPage() {
   return (
     <main className="experiments-page">
-      <BackButton href="/" />
+      <BackButton href="/" label="Home" />
       <div className="experiments-page__header">
         <h1 className="experiments-page__title">Experiments</h1>
         <p className="experiments-page__subtitle">

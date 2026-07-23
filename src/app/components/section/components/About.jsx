@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import meOriginal from '@/app/assets/images/me_original.jpeg';
-import Link from 'next/link';
+import TransitionLink from '@/app/components/transition/TransitionLink';
 
 const About = () => {
   const getExperienceText = () => {
@@ -53,9 +53,13 @@ const About = () => {
             Currently, I&lsquo;m exploring 3D world with tools like{' '}
             <strong>Blender, Three.js and React Fiber</strong> to bring
             immersive experiences to the web.{' '}
-            <Link href="/experiments" className="about__link">
+            <TransitionLink
+              href="/experiments"
+              className="about__link"
+              label="Experiments"
+            >
               Check out my journey here!
-            </Link>
+            </TransitionLink>
           </p>
         </div>
       </div>

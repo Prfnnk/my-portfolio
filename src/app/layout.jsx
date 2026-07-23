@@ -1,9 +1,9 @@
 // import global styles
 import './globals.css';
 
-// import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
+import TransitionOverlay from './components/transition/TransitionOverlay';
 
 export const metadata = {
   title: 'Maria Abdurakhmanova - Frontend Developer Portfolio',
@@ -20,7 +20,10 @@ export default function RootLayout({ children }) {
           href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <TransitionOverlay />
+        {children}
+      </body>
     </html>
   );
 }

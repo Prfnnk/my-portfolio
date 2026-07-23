@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import TransitionLink from '@/app/components/transition/TransitionLink';
 import './experimentCard.scss';
 
 const ExperimentCard = ({ experiment }) => {
@@ -8,9 +8,10 @@ const ExperimentCard = ({ experiment }) => {
   const hiddenTagCount = Math.max(0, experiment.tags.length - 3);
 
   return (
-    <Link
+    <TransitionLink
       href={experiment.published ? `/experiments/${experiment.id}` : '#'}
       className={`experiment-card__link ${!experiment.published ? 'disabled' : ''}`}
+      label={experiment.title}
     >
       <div className="experiment-card">
         <div className="experiment-card__image">
@@ -52,7 +53,7 @@ const ExperimentCard = ({ experiment }) => {
           </div>
         )}
       </div>
-    </Link>
+    </TransitionLink>
   );
 };
 
