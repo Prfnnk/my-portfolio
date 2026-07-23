@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import { useState, useEffect } from 'react';
 import './assets/css/wizard-room.scss';
 import WizardRoom from './scenes/WizardRoom.jsx';
+import BackButton from '@/app/components/backButton/BackButton';
 
 export default function WizardRoomPage() {
   const [showGuide, setShowGuide] = useState(true);
@@ -45,6 +46,7 @@ export default function WizardRoomPage() {
 
   return (
     <div className="wizard-room-page">
+      <BackButton href="/experiments" />
       <Canvas
         flat
         camera={{ position: [0.03, -0.14, 3.68], fov: 45, near: 0.1, far: 200 }}

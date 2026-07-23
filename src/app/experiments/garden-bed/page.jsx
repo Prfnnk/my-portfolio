@@ -3,10 +3,12 @@ import { Canvas } from '@react-three/fiber';
 import './garden-bed-page.scss';
 import GardenBed from './scenes/GardenBed.jsx';
 import Interface from './scenes/components/Interface.jsx';
+import BackButton from '@/app/components/backButton/BackButton';
 
 export default function GardenBedPage() {
   return (
     <div className="garden-bed-page">
+      <BackButton href="/experiments" />
       <Canvas shadows camera={{ position: [0, 13, 10], fov: 45 }}>
         <ambientLight intensity={3} />
         <directionalLight

@@ -2,11 +2,13 @@
 import React from 'react';
 import { experiments } from '@/app/data/experiments';
 import ExperimentsGrid from '@/app/components/experimentGrid/ExperimentsGrid';
+import BackButton from '@/app/components/backButton/BackButton';
 import './experiments.scss';
 
 export default function ExperimentsPage() {
   return (
     <main className="experiments-page">
+      <BackButton href="/" />
       <div className="experiments-page__header">
         <h1 className="experiments-page__title">Experiments</h1>
         <p className="experiments-page__subtitle">

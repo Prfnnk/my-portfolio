@@ -11,6 +11,11 @@
   cursor: pointer;
   position: relative;
 
+  &__link:focus-visible & {
+    transform: translateY(toRem(-8));
+    box-shadow: 0 toRem(16) toRem(32) rgba(0, 0, 0, 0.12);
+  }
+
   &:hover {
     transform: translateY(toRem(-8));
     box-shadow: 0 toRem(16) toRem(32) rgba(0, 0, 0, 0.12);
