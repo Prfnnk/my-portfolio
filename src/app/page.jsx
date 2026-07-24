@@ -2,10 +2,13 @@
 import { useState } from 'react';
 import Section from './components/section/Section';
 import Nav from './components/nav/Nav';
+import InitialLoader from './components/loader/InitialLoader';
 
 import { useIntersectionObserver } from '@/app/hooks/useIntersectionObserver';
 
 export default function Home() {
+  const [isInitialLoaded, setIsInitialLoaded] = useState(false);
+
   const sectionsArr = [
     'greet',
     'about',
@@ -17,7 +20,7 @@ export default function Home() {
 
   const [sectionScrollY, setSectionScrollY] = useState({});
 
-  // Intersaction Observer
+  // Intersection Observer
   const [entryId, setEntryId] = useState('');
   const cbRef = useIntersectionObserver({ threshold: 0.5 }, (entries) => {
     entries.forEach((entry) => {
@@ -29,6 +32,7 @@ export default function Home() {
 
   return (
     <main className="main">
+      <InitialLoader onComplete={() => setIsInitialLoaded(true)} />
       <Nav
         navArr={sectionsArr}
         entryId={entryId}
@@ -41,6 +45,7 @@ export default function Home() {
           title={title}
           setSectionScrollY={setSectionScrollY}
           sectionScrollY={sectionScrollY}
+          isInitialLoaded={isInitialLoaded}
         />
       ))}
     </main>

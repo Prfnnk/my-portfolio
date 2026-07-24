@@ -1,7 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import './section.scss';
 
-const Section = ({ title, refProp, setSectionScrollY, sectionScrollY }) => {
+const Section = ({
+  title,
+  refProp,
+  setSectionScrollY,
+  sectionScrollY,
+  isInitialLoaded,
+}) => {
   const componentName = title.charAt(0).toUpperCase() + title.slice(1);
   const Component = require(`./components/${componentName}`).default;
   const sectionRef = useRef(null);
@@ -18,6 +24,7 @@ const Section = ({ title, refProp, setSectionScrollY, sectionScrollY }) => {
         <Component
           sectionRef={sectionRef}
           offsetTop={sectionRef.current?.getBoundingClientRect()?.y}
+          isInitialLoaded={isInitialLoaded}
         />
       </div>
     </section>
